@@ -19,9 +19,16 @@ local TeleportService = game:GetService("TeleportService")
 
 notif:Notification("Made by Purps","Check the config variables!","GothamSemibold","Gotham",2)
 
+local Config = {
+    TeamEscape = true, -- True by default. Allows yo lads to escape GOJIRA MUST BE AWAKE
+    OneManEscape = false, -- False by default. Bypasses the need for Gojira to be awake
+    AutoRejoin = false -- False by default, you just need to execute the script when you join the new server.
+}
+
 if Config.TeamEscape == true and Config.OneManEscape == true then -- TeamEscape + OneManEscape set to true
     loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/EscapeEarly.lua"))()
     notif:Notification("TeamEscape","Gojira must be awake first, else your teammates will have to wait for him to awaken to escape.","GothamSemibold","Gotham",2)
+
 
     task.wait(1)
 
