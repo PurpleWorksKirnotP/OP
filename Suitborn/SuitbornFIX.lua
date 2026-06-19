@@ -1,7 +1,6 @@
 local notif = loadstring(game:HttpGet("https://raw.githubusercontent.com/DozeIsOkLol/UILibarys/refs/heads/main/Notifications/Modern/Source.lua"))()
 local TeleportService = game:GetService("TeleportService")
 
-
 --[[
     ***READ ME!!!***
     For Team Escape to work, you need to wait for godzilla to wake up (or move out of the exit hallway)
@@ -20,9 +19,9 @@ local TeleportService = game:GetService("TeleportService")
 notif:Notification("Made by Purps","Check the config variables!","GothamSemibold","Gotham",2)
 
 local Config = {
-    TeamEscape = true, -- True by default. Allows yo lads to escape GOJIRA MUST BE AWAKE
-    OneManEscape = false, -- False by default. Bypasses the need for Gojira to be awake
-    AutoRejoin = false -- False by default, you just need to execute the script when you join the new server.
+    TeamEscape = false, -- True by default. Allows yo lads to escape GOJIRA MUST BE AWAKE
+    OneManEscape = true, -- False by default. Bypasses the need for Gojira to be awake
+    AutoRejoin = false -- False by default, (NEEDS TO BE IN NIGHT 1) you just need to execute the script when you join the new server.
 }
 
 if Config.TeamEscape == true and Config.OneManEscape == true then -- TeamEscape + OneManEscape set to true
@@ -37,6 +36,7 @@ elseif Config.OneManEscape == true and Config.TeamEscape == false then -- OneMan
     notif:Notification("One man Escape","Will automatically send you to the lobby!","GothamSemibold","Gotham",2)
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Gojira.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/PurpsUtility.lua"))() -- Opens up purps utils just incase if anything fails or needs a rejoin.
 elseif Config.TeamEscape == true and Config.OneManEscape == false then -- Team Escape set to true and One Man Escape set to be false
     notif:Notification("TeamEscape","Gojira must be awake first, else your teammates will have to wait for him to awaken to escape.","GothamSemibold","Gotham",5)
 
