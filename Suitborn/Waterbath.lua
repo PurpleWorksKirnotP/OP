@@ -72,7 +72,7 @@ NewFeatures:addButton("ESCAPE!!!", function()
 end)
 
 local farmingKatanas = false
-NewFeatures:addButton("Auto-Farm Katanas", function()
+NewFeatures:addButton("Auto-Farm Katanas", function(value)
     farmingKatanas = value
     if farmingKatanas then
         task.spawn(function()
