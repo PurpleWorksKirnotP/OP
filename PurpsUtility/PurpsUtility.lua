@@ -16,3 +16,7 @@ end)
 Home:addButton("Inf Yield", function()  
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 end)
+
+Home:addButton("Aimlock (Universal)", function()  
+    loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/Aimlock.lua"))()
+end)
