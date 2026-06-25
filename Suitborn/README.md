@@ -15,4 +15,4 @@ loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs
 ```
 
 Features are already self-explanable + youtube videos are provided (waterbath one is still in the works.)
-[Youtube link to suitbornscript night 1]((https://www.youtube.com/watch?v=4oMloESaPDY&t=25s))
+https://www.youtube.com/watch?v=4oMloESaPDY&t=25s
