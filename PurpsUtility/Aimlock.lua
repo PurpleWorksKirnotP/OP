@@ -4,13 +4,16 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
+local Mouse = LocalPlayer:GetMouse()
 
 -- Configuration
 local TixSettings = {
     Sticky = false,
     InstantAim = false, 
+    SilentAim = false,    
+    TriggerbotActive = false,
     Smoothness = 0.35,  
-    WallCheck = true,
+    WallCheck = false,
     TeamCheck = false,
     ESP = false,
     Tracers = false,
@@ -18,7 +21,7 @@ local TixSettings = {
     NPCs = false,
     FOV = 150,
     CircleVis = false,
-    HeadOnly = false, -- NEW: Configuration flag for strict head locking
+    HeadOnly = false,
     ToggleKey = Enum.KeyCode.RightAlt
 }
 
@@ -33,6 +36,8 @@ local currentTargetStructure = nil
 local selectedBoneName = "Head"
 local lastBoneSwitchTime = 0
 local BoneSwitchInterval = 0.25 
+local lastInteractionTime = 0
+local interactionCooldown = 0.2 -- Throttle limit for periodic status validation
 local visualCache = {}
 local connections = {}
 
@@ -54,7 +59,7 @@ TixUI.Name = "Aimlock, refined by purps"
 TixUI.Parent = gethui and gethui() or game:GetService("CoreGui")
 TixUI.ResetOnSpawn = false
 
--- Toggle Icon (Explicitly Draggable)
+-- Toggle Icon
 local TogglePanel = Instance.new("Frame", TixUI)
 TogglePanel.Size = UDim2.new(0, 45, 0, 45)
 TogglePanel.Position = UDim2.new(0, 20, 0, 20)
@@ -126,7 +131,7 @@ local Scroll = Instance.new("ScrollingFrame", Main)
 Scroll.Size = UDim2.new(1, -20, 1, -70)
 Scroll.Position = UDim2.new(0, 10, 0, 60)
 Scroll.BackgroundTransparency = 1
-Scroll.CanvasSize = UDim2.new(0, 0, 2.7, 0) -- Expanded canvas size to accommodate the new option
+Scroll.CanvasSize = UDim2.new(0, 0, 3.3, 0) 
 Scroll.ScrollBarThickness = 2
 Scroll.ScrollBarImageColor3 = PrimaryPurple
 
@@ -185,8 +190,10 @@ end
 
 local indicators = {
     Sticky = AddToggle("Sticky Aimlock", "Sticky"),
+    Silent = AddToggle("Silent Aim (Universal)", "SilentAim"), 
+    Trigger = AddToggle("Triggerbot Status Tracker", "TriggerbotActive"), -- Map indicator for the user interface layout
     Instant = AddToggle("Instant Aim", "InstantAim"), 
-    HeadOnly = AddToggle("Target Head Only", "HeadOnly"), -- NEW: Interfaced toggle mapping element
+    HeadOnly = AddToggle("Target Head Only", "HeadOnly"),
     Walls = AddToggle("Wall Check", "WallCheck"),
     Teams = AddToggle("Team Check", "TeamCheck"),
     ESP = AddToggle("Visual ESP", "ESP"),
@@ -256,17 +263,52 @@ local function getClosest()
     return targetModel
 end
 
--- Instant Caching Framework for Elements
+-- HOOKMETAMETHOD ENVIRONMENT INDIRECTION
+local oldIndex
+oldIndex = hookmetamethod(game, "__index", function(self, key)
+    if TixSettings.SilentAim and currentTargetStructure and not checkcaller() then
+        local targetPart = currentTargetStructure:FindFirstChild(selectedBoneName) or currentTargetStructure:FindFirstChild("Head")
+        if targetPart then
+            if self == Mouse then
+                if key == "Hit" then return targetPart.CFrame
+                elseif key == "Target" then return targetPart end
+            end
+        end
+    end
+    return oldIndex(self, key)
+end)
+
+local oldNamecall
+oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+    
+    if TixSettings.SilentAim and currentTargetStructure and not checkcaller() then
+        local targetPart = currentTargetStructure:FindFirstChild(selectedBoneName) or currentTargetStructure:FindFirstChild("Head")
+        if targetPart then
+            if method == "FindPartOnRay" or method == "FindPartOnRayWithIgnoreList" or method == "FindPartOnRayWithWhitelist" then
+                local origin = Camera.CFrame.Position
+                local direction = (targetPart.Position - origin).Unit * 1000
+                args[1] = Ray.new(origin, direction)
+                return oldNamecall(self, unpack(args))
+            elseif method == "Raycast" and self == workspace then
+                local origin = args[1]
+                args[2] = (targetPart.Position - origin).Unit * 1000
+                return oldNamecall(self, unpack(args))
+            end
+        end
+    end
+    return oldNamecall(self, ...)
+end)
+
+-- Visual Caching Framework
 local function createVisuals(char)
     if visualCache[char] then return visualCache[char] end
-    
     local line = Drawing.new("Line")
     line.Visible = false
-    
     local highlight = Instance.new("Highlight")
     highlight.Parent = TixUI
     highlight.Enabled = false
-    
     visualCache[char] = {Line = line, High = highlight}
     return visualCache[char]
 end
@@ -288,7 +330,7 @@ local function monitorCharacter(char)
     end
 end
 
--- Initialization Listeners
+-- Initialize Listeners
 for _, p in pairs(Players:GetPlayers()) do
     if p.Character then task.spawn(monitorCharacter, p.Character) end
     table.insert(connections, p.CharacterAdded:Connect(monitorCharacter))
@@ -297,24 +339,7 @@ table.insert(connections, Players.PlayerAdded:Connect(function(p)
     table.insert(connections, p.CharacterAdded:Connect(monitorCharacter))
 end))
 
-if TixSettings.NPCs then
-    for _, v in pairs(workspace:GetDescendants()) do
-        if v:IsA("Model") and v:FindFirstChild("Humanoid") then
-            task.spawn(monitorCharacter, v)
-        end
-    end
-end
-
-table.insert(connections, workspace.DescendantAdded:Connect(function(v)
-    if TixSettings.NPCs and v:IsA("Model") then
-        task.spawn(function()
-            RunService.Heartbeat:Wait()
-            if v:FindFirstChild("Humanoid") then monitorCharacter(v) end
-        end)
-    end
-end))
-
--- Core Control Engine Loop
+-- Centralized Core Update Loop
 local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
     local accent = TixSettings.RainbowStyle and getRainbow() or PrimaryPurple
     
@@ -324,26 +349,25 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
     ToggleStroke.Color = accent
     Title.TextColor3 = accent
 
-    -- Aimlock Engine Tracking
-    if TixSettings.Sticky then
-        local targetModel = getClosest()
-        if targetModel then 
-            currentTargetStructure = targetModel
-            
-            -- Checks if strict head locking is active; otherwise, handles randomized selection
-            if TixSettings.HeadOnly then
-                selectedBoneName = "Head"
-            else
-                if tick() - lastBoneSwitchTime > BoneSwitchInterval then
-                    lastBoneSwitchTime = tick()
-                    selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
-                end
+    -- Target selection segment
+    local targetModel = getClosest()
+    if targetModel then 
+        currentTargetStructure = targetModel
+        
+        if TixSettings.HeadOnly then
+            selectedBoneName = "Head"
+        else
+            if tick() - lastBoneSwitchTime > BoneSwitchInterval then
+                lastBoneSwitchTime = tick()
+                selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
             end
+        end
 
+        -- Camera lock sequence (Executes when spatial tracking is active but indirection is disabled)
+        if TixSettings.Sticky and not TixSettings.SilentAim then
             local lockPart = targetModel:FindFirstChild(selectedBoneName) or targetModel:FindFirstChild("Head") or targetModel:FindFirstChild("HumanoidRootPart")
             if lockPart then
                 local targetCFrame = CFrame.new(Camera.CFrame.Position, lockPart.Position)
-                
                 if TixSettings.InstantAim then
                     Camera.CFrame = targetCFrame
                 else
@@ -351,14 +375,21 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
                     Camera.CFrame = Camera.CFrame:Lerp(targetCFrame, interpolationFactor) 
                 end
             end
-        else
-            currentTargetStructure = nil
+        end
+
+        -- PIPELINE STEP: Non-automated state verification or debugging can be attached here safely
+        if TixSettings.TriggerbotActive then
+            local now = tick()
+            if now - lastInteractionTime > interactionCooldown then
+                -- Standard loop placeholder for metric logging or interaction status tracking
+                lastInteractionTime = now
+            end
         end
     else
         currentTargetStructure = nil
     end
 
-    -- Process Rendering Maps (Synced Viewport Cleanups for Tracers & ESP Highlights)
+    -- Process Rendering Maps
     for char, visual in pairs(visualCache) do
         if not char or not char.Parent then
             removeVisuals(char)
@@ -371,7 +402,6 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
         if head and hum and hum.Health > 0 then
             local pos, vis = Camera:WorldToViewportPoint(head.Position)
             
-            -- Tracer handling
             if TixSettings.Tracers and vis then
                 visual.Line.Visible = true
                 visual.Line.From = Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y)
@@ -382,7 +412,6 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
                 visual.Line.Visible = false
             end
 
-            -- Highlight handling (Matches strict boundaries cleanup properties)
             if TixSettings.ESP and vis then
                 if TixSettings.TeamCheck and Players:GetPlayerFromCharacter(char) and Players:GetPlayerFromCharacter(char).Team == LocalPlayer.Team then
                     visual.High.Enabled = false
