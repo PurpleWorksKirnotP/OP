@@ -18,7 +18,6 @@ local TixSettings = {
     NPCs = false,
     FOV = 150,
     CircleVis = false,
-    HeadOnly = false, -- NEW: Configuration flag for strict head locking
     ToggleKey = Enum.KeyCode.RightAlt
 }
 
@@ -126,7 +125,7 @@ local Scroll = Instance.new("ScrollingFrame", Main)
 Scroll.Size = UDim2.new(1, -20, 1, -70)
 Scroll.Position = UDim2.new(0, 10, 0, 60)
 Scroll.BackgroundTransparency = 1
-Scroll.CanvasSize = UDim2.new(0, 0, 2.7, 0) -- Expanded canvas size to accommodate the new option
+Scroll.CanvasSize = UDim2.new(0, 0, 2.4, 0) 
 Scroll.ScrollBarThickness = 2
 Scroll.ScrollBarImageColor3 = PrimaryPurple
 
@@ -186,7 +185,6 @@ end
 local indicators = {
     Sticky = AddToggle("Sticky Aimlock", "Sticky"),
     Instant = AddToggle("Instant Aim", "InstantAim"), 
-    HeadOnly = AddToggle("Target Head Only", "HeadOnly"), -- NEW: Interfaced toggle mapping element
     Walls = AddToggle("Wall Check", "WallCheck"),
     Teams = AddToggle("Team Check", "TeamCheck"),
     ESP = AddToggle("Visual ESP", "ESP"),
@@ -330,17 +328,13 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
         if targetModel then 
             currentTargetStructure = targetModel
             
-            -- Checks if strict head locking is active; otherwise, handles randomized selection
-            if TixSettings.HeadOnly then
-                selectedBoneName = "Head"
-            else
-                if tick() - lastBoneSwitchTime > BoneSwitchInterval then
-                    lastBoneSwitchTime = tick()
-                    selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
-                end
+            -- Active humanized mid-lock part shifting
+            if tick() - lastBoneSwitchTime > BoneSwitchInterval then
+                lastBoneSwitchTime = tick()
+                selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
             end
 
-            local lockPart = targetModel:FindFirstChild(selectedBoneName) or targetModel:FindFirstChild("Head") or targetModel:FindFirstChild("HumanoidRootPart")
+            local lockPart = targetModel:FindFirstChild(selectedBoneName) or targetModel:FindFirstChild("HumanoidRootPart") or targetModel:FindFirstChild("Head")
             if lockPart then
                 local targetCFrame = CFrame.new(Camera.CFrame.Position, lockPart.Position)
                 
