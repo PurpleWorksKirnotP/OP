@@ -2,6 +2,8 @@
 
 If you are a suitborn dev I highly request you to dm me on discord for details on how to patch these things. User: Kirturneedpurp
 
+I Know that this wont get seen but its worth a shot, right?
+
 Suitborn Script (NIGHT 1):
 
 ```
