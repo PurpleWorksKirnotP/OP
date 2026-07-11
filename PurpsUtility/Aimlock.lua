@@ -1,3 +1,9 @@
+local notif = loadstring(game:HttpGet("https://raw.githubusercontent.com/DozeIsOkLol/UILibarys/refs/heads/main/Notifications/Modern/Source.lua"))()
+
+notif:Notification("Made by Purps","This is outdated! New Script copied to clipboard","GothamSemibold","Gotham",2)
+
+setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockV2.lua"))()")
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")

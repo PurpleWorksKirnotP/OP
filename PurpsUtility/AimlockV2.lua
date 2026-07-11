@@ -1,3 +1,7 @@
+local notif = loadstring(game:HttpGet("https://raw.githubusercontent.com/DozeIsOkLol/UILibarys/refs/heads/main/Notifications/Modern/Source.lua"))()
+
+notif:Notification("Made by Purps","Running Aimlock V2 By Purps","GothamSemibold","Gotham",2)
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
