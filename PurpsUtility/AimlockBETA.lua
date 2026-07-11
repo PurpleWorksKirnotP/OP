@@ -53,7 +53,15 @@ local MainTab = Window:page({name = "Main"})
 local AimSection = MainTab:section({name = "Aimlock Settings", side = "left", size = 310})
 local VisualSection = MainTab:section({name = "Visual Settings", side = "right", size = 230})
 
+local ExtrasTab = Window:page({name = "ExtrasTab", acceent = PrimaryPurple, textsize = 13})
+local ScriptsSection = ExtrasTab:section({name = "Scripts", side = "left", size = 310})
+
 -- Bind UI Controls to Settings
+
+ScriptsSection:button({name = "PurpsUtils", callback = function()
+    loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/PurpsUtility.lua"))()
+end})
+
 AimSection:toggle({name = "Sticky Aimlock", def = TixSettings.Sticky, callback = function(Boolean)
     TixSettings.Sticky = Boolean
 end})
