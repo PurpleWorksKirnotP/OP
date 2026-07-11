@@ -12,14 +12,14 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/imago
 local TixSettings = {
     Sticky = false,
     InstantAim = false, 
-    Smoothness = 0.35,  -- Handled by the slider now
+    Smoothness = 0.35,
     WallCheck = true,
     TeamCheck = false,
     ESP = false,
     Tracers = false,
     RainbowStyle = false,
     NPCs = false,
-    FOV = 150,
+    FOV = 150,        -- Handled by the FOV slider now
     CircleVis = false,
     ToggleKey = Enum.KeyCode.RightAlt
 }
@@ -50,7 +50,7 @@ Circle.Filled = false
 local Window = library:new({name = "Aimlock Refined", accent = PrimaryPurple, textsize = 13})
 local MainTab = Window:page({name = "Main"})
 local AimSection = MainTab:section({name = "Aimlock Settings", side = "left", size = 280})
-local VisualSection = MainTab:section({name = "Visual Settings", side = "right", size = 180})
+local VisualSection = MainTab:section({name = "Visual Settings", side = "right", size = 230})
 
 -- Bind UI Controls to Settings
 AimSection:toggle({name = "Sticky Aimlock", def = TixSettings.Sticky, callback = function(Boolean)
@@ -64,7 +64,7 @@ end})
 -- Smoothness Slider Configuration
 AimSection:slider({
     name = "Smoothness", 
-    min = 5,      -- Library inputs typically use integers, so we multiply by 100
+    min = 5,
     max = 100, 
     def = TixSettings.Smoothness * 100, 
     callback = function(Value)
@@ -100,6 +100,18 @@ VisualSection:toggle({name = "Show FOV", def = TixSettings.CircleVis, callback =
     TixSettings.CircleVis = Boolean
     Circle.Visible = Boolean
 end})
+
+-- FOV Size Slider Configuration
+VisualSection:slider({
+    name = "FOV Size",
+    min = 10,
+    max = 1200,
+    def = TixSettings.FOV,
+    callback = function(Value)
+        TixSettings.FOV = Value
+        Circle.Radius = Value
+    end
+})
 
 -- Keybind Trigger Setup
 table.insert(connections, UserInputService.InputBegan:Connect(function(input, gameProcessed)
