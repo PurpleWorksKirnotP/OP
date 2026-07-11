@@ -13,13 +13,14 @@ local TixSettings = {
     Sticky = false,
     InstantAim = false, 
     Smoothness = 0.35,
+    HeadOnly = false, -- New toggle choice
     WallCheck = true,
     TeamCheck = false,
     ESP = false,
     Tracers = false,
     RainbowStyle = false,
     NPCs = false,
-    FOV = 150,        -- Handled by the FOV slider now
+    FOV = 150,
     CircleVis = false,
     ToggleKey = Enum.KeyCode.RightAlt
 }
@@ -49,7 +50,7 @@ Circle.Filled = false
 -- UI Initialization
 local Window = library:new({name = "Aimlock Refined", accent = PrimaryPurple, textsize = 13})
 local MainTab = Window:page({name = "Main"})
-local AimSection = MainTab:section({name = "Aimlock Settings", side = "left", size = 280})
+local AimSection = MainTab:section({name = "Aimlock Settings", side = "left", size = 310})
 local VisualSection = MainTab:section({name = "Visual Settings", side = "right", size = 230})
 
 -- Bind UI Controls to Settings
@@ -59,6 +60,10 @@ end})
 
 AimSection:toggle({name = "Instant Aim", def = TixSettings.InstantAim, callback = function(Boolean)
     TixSettings.InstantAim = Boolean
+end})
+
+AimSection:toggle({name = "Head Only Aiming", def = TixSettings.HeadOnly, callback = function(Boolean)
+    TixSettings.HeadOnly = Boolean
 end})
 
 -- Smoothness Slider Configuration
@@ -243,10 +248,14 @@ local runtimeLoop = RunService.RenderStepped:Connect(function(deltaTime)
         if targetModel then 
             currentTargetStructure = targetModel
             
-            -- Active humanized mid-lock part shifting
-            if tick() - lastBoneSwitchTime > BoneSwitchInterval then
-                lastBoneSwitchTime = tick()
-                selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
+            -- Humanized part shifting vs Fixed Head logic
+            if TixSettings.HeadOnly then
+                selectedBoneName = "Head"
+            else
+                if tick() - lastBoneSwitchTime > BoneSwitchInterval then
+                    lastBoneSwitchTime = tick()
+                    selectedBoneName = (math.random(1, 2) == 1) and "Head" or "HumanoidRootPart"
+                end
             end
 
             local lockPart = targetModel:FindFirstChild(selectedBoneName) or targetModel:FindFirstChild("HumanoidRootPart") or targetModel:FindFirstChild("Head")
