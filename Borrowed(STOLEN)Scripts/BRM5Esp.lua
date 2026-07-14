@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://rawscripts.net/raw/Blackhawk-Rescue-Mission-5-VERY-BASIC-ESP-BRM5-Updated-OPEN-SOURCE-201579"))()

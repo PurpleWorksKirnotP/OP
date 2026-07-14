@@ -20,3 +20,11 @@ Aimlock V2 (New, New UI)
 ```
 loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockV2.lua"))()
 ```
+
+# IN BETA
+
+Aimlock BETA (0.0.5, Same UI, New Features)
+
+```
+loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockBETA.lua"))()
+```
