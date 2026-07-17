@@ -1,4 +1,8 @@
-local Players = game:GetService("Players")
+print("DEPRECATED CODE!!! Copied New Script To Clipboard.")
+
+setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()")setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()")
+
+--[[local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local function executionSequence()
@@ -21,3 +25,4 @@ if game.PlaceId == 98274370174426 then -- Menu
 elseif game.PlaceId == 90784884733059 then -- Game
     task.spawn(executionSequence)
 end
+]]
