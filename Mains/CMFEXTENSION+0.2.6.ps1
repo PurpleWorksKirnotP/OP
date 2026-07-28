@@ -3,6 +3,9 @@
 
 #Requires -RunAsAdministrator
 
+Add-Type -AssemblyName System.Windows.Forms
+[System.Windows.Forms.Clipboard]::SetText("DENIED CMF-E HAS DISABLED THE COMMAND ON UR PC. IT SHOULD ONLY BE 1 TIME USE.")
+
 Write-Host @"
    ______  ____    ____  ________       ________  ____  ____  _________  ________  ____  _____   ______   _____   ___   ____  _____              ____     _______       _____   
  .' ___  ||_   \  /   _||_   __  |     |_   __  ||_  _||_  _||  _   _  ||_   __  ||_   \|_   _|.' ____ \ |_   _|.'   `.|_   \|_   _|           .'    '.  |  _____|     / ___ `. 
