@@ -28,3 +28,7 @@ Aimlock BETA (0.0.5, Same UI, New Features)
 ```
 loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockBETA.lua"))()
 ```
+
+---
+
+Back to [Main](../README.md)

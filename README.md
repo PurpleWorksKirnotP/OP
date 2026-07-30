@@ -20,4 +20,16 @@ I'm also going to retire the EscapeEarly and Gojira luas and intergrate them wit
 
 ---
 
-Jump to [Guides](Mains/Python)
+For cmd scripts:
+
+Jump to [Guides](Mains/CmdPurps.md)
+
+For roblox Scripts:
+
+Jump to [Suitborn Scripts](Suitborn/README.md)
+
+Jump to [Purps Utility Scripts](PurpsUtility/README.md)
+
+Jump to [PurpsScripts](PurpsScripts/README.md)
+
+Jump to [Borrowed Scripts](Borrowed(STOLEN)Scripts/README.md)

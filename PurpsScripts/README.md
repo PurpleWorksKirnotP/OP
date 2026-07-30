@@ -7,3 +7,7 @@ Hekmatyar Script (dirty money)
 ```
 loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsScripts/Hekmatyar(Dirty%20Money)/LaunderedMoney.lua"))()
 ```
+
+---
+
+Back to [Main](../README.md)

@@ -55,3 +55,5 @@ irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mai
 ```
 (irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/CMFExtensionPython0.0.1.py") | python -
 ```
+
+Back to [Main](../README.md)
