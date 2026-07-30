@@ -1,3 +1,6 @@
+import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 # Platforms
 import platform
 import datetime
@@ -7,8 +10,6 @@ import random
 
 username = os.getlogin()
 userfolder = os.path.expanduser('~')
-
-encoding = "utf-8"
 
 art = """
      ___   ________  _________   _______  _______________   _______ ________  _   __   ______  __   ___   ____                    _                ____   ____   ___   
@@ -33,6 +34,8 @@ CmfExts = [
     'CMFPyth.exe'
 ]
 
+time.sleep(1)
+
 print(f"{ToolName} extensions: {CmfExts}")
 print(f"{ToolName} Checking pc specs for qualification:")
 
@@ -47,21 +50,21 @@ print(f"{ToolName} Processor: {prc}")
 print(f"{ToolName} Time: {tme}")
 print(f"{ToolName} {userfolder}")
 
-time.sleep(0.25)
+time.sleep(0.55)
 
 print(f"{ToolName} Starting process...")
 
-time.sleep(0.15)
+time.sleep(1)
 
 for root, dirs, files in os.walk(userfolder):
     for file in files:
-        print(f"{ToolName} Found File: {os.path.join(root, file)} | FileID: {random.randint(1000,9999)}x{random.randint(1000,9999)} | FileSize: {round(os.stat(os.path.join(root, file)).st_size/1024,2)}KB | FileDate: {os.path.getctime(os.path.join(root, file))} | FileSafety: {random.choice(['Safe, Unknown, Unsure'])}")
+        print(f"{ToolName} Found File: {os.path.join(root, file)} | FileID: {random.randint(1000,9999)}x{random.randint(1000,9999)} | FileSize: {round(os.stat(os.path.join(root, file)).st_size/1024,2)}KB | FileDate: {os.path.getctime(os.path.join(root, file))} | FileSafety: {random.choice(['Safe', 'Unknown', 'Unsure'])}")
         print(f"{ToolName} Scanning Next...")
 
 time.sleep(0.5)
 
-print(f"{ToolName} Finalized Scanning! | Malware Database (DONT VISIT): https://bazaar.abuse.ch/ | VirusTotal Database: https://www.virustotal.com/")
+print(f"{ToolName} Finalized Scanning! | Malware Database (DONT DOWNLOAD ANYTHING): https://bazaar.abuse.ch/ | VirusTotal Database: https://www.virustotal.com/")
 print(f"{ToolName} Thank you for using CMF Extensions for python.")
 print(f"{ToolName} Forever open-source and safe!")
 
-time.sleep(0.5)
+time.sleep(5)
