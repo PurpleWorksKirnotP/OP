@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Lua",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.vscode\\extensions\\yinfei.luahelper-0.2.29\\debugger\\luasocket\\win\\x64\\lua5.4\\lua54.exe",
+            "args": ["${file}"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}

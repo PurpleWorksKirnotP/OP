@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lua",
+      "request": "launch",
+      "name": "Debug Lua file",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "runtimeExecutable": "${env:USERPROFILE}\\.vscode\\extensions\\yinfei.luahelper-0.2.29\\debugger\\luasocket\\win\\x64\\lua5.4\\lua54.exe"
+    }
+  ]
+}
