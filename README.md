@@ -20,4 +20,4 @@ I'm also going to retire the EscapeEarly and Gojira luas and intergrate them wit
 
 ---
 
-Jump to [Guides](Mains/Python/CmdPurps.md)
+Jump to [Guides](Mains/Python)
