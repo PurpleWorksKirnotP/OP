@@ -9,8 +9,14 @@ Windows or any Debian based linux distribution (e.g. Linux Mint: Cinnamon, Ubunt
 To download Windows power shell on Debian based Linux distros:
 
 Installs power shell and any dependencies (run as root)
+
+First:
 ```
 sudo su
+```
+
+Second:
+```
 curl -fsSL https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/LinuxDeps.sh | bash 
 ```
 
