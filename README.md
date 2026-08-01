@@ -33,3 +33,7 @@ Jump to [Purps Utility Scripts](PurpsUtility/README.md)
 Jump to [PurpsScripts](PurpsScripts/README.md)
 
 Jump to [Borrowed Scripts](Borrowed(STOLEN)Scripts/README.md)
+
+# To those who think my python/powershell scripts are malware:
+
+Download and run them through [VirusTotal](https://www.virustotal.com/gui/), a completely free virus checker on the internet.
