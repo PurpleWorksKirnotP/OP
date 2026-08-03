@@ -2,6 +2,9 @@
 
 ---
 
+Contact me on discord!!!
+user: kirturneedpurp
+
 Fully open source for all.
 
 Please don't distribute my scripts to different sites other than rscripts.

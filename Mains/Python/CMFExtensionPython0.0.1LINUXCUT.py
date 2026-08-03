@@ -5,11 +5,11 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 import platform
 import datetime
 import time
-import os
+# import os
 import random
 
-username = os.getlogin()
-userfolder = os.path.expanduser('~')
+# username = os.getlogin()
+# userfolder = os.path.expanduser('~')
 
 art = """
      ___   ________  _________   _______  _______________   _______ ________  _   __   ______  __   ___   ____                    _                ____   ____   ___   
@@ -48,7 +48,7 @@ tme = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print(f"{ToolName} Pc Name: {pc_name}")
 print(f"{ToolName} Processor: {prc}")
 print(f"{ToolName} Time: {tme}")
-print(f"{ToolName} {userfolder}")
+# print(f"{ToolName} {userfolder}")
 
 time.sleep(0.55)
 
@@ -56,10 +56,10 @@ print(f"{ToolName} Starting process...")
 
 time.sleep(1)
 
-for root, dirs, files in os.walk(userfolder):
-     for file in files:
-       print(f"{ToolName} Found File: {os.path.join(root, file)} | FileID: {random.randint(1000,9999)}x{random.randint(1000,9999)} | FileSize: {round(os.stat(os.path.join(root, file)).st_size/1024,2)}KB | FileDate: {os.path.getctime(os.path.join(root, file))} | FileSafety: {random.choice(['Safe', 'Unknown', 'Unsure'])}")
-       print(f"{ToolName} Scanning Next...")
+# for root, dirs, files in os.walk(userfolder):
+#     for file in files:
+#       print(f"{ToolName} Found File: {os.path.join(root, file)} | FileID: {random.randint(1000,9999)}x{random.randint(1000,9999)} | FileSize: {round(os.stat(os.path.join(root, file)).st_size/1024,2)}KB | FileDate: {os.path.getctime(os.path.join(root, file))} | FileSafety: {random.choice(['Safe', 'Unknown', 'Unsure'])}")
+#        print(f"{ToolName} Scanning Next...")
 
 time.sleep(0.5)
 
