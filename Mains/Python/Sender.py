@@ -25,7 +25,7 @@ def send_to_discord(webhook_url: str, message: str, username: str = None) -> boo
 
 def main():
     # Get webhook URL (from env var or prompt)
-    webhook_url = os.environ.get("https://discord.com/api/webhooks/1516428299306401893/A4e1dSRCatc--8VAmh4EoYY1IfUdhkJDR5MKSskTT_xrgpdzNNGyjIg5AH7YZ_zXtl9L")
+    webhook_url = "https://discord.com/api/webhooks/1516428299306401893/A4e1dSRCatc--8VAmh4EoYY1IfUdhkJDR5MKSskTT_xrgpdzNNGyjIg5AH7YZ_zXtl9L"
 
     # Optional custom username
     username = input("Custom username (press Enter to skip): ").strip() or None
