@@ -17,6 +17,11 @@ echo "Checking if prerequisites are already installed.."
 
 if which curl > /dev/null && which pwsh > /dev/null && which python3 > /dev/null && which pip3 > /dev/null; then
     echo "All prerequisites are already installed. Exiting."
+    echo "Powershell installed successfully! You may now run powershell by typing 'pwsh' in your terminal."
+    echo "You can also visit: https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/CmdPurps.md to run any powershell script (MAY NOT WORK DUE TO LACK OF LINUX SUPPORT.)"
+    echo "I will be working on Linux support, on the meantime, you can use the powershell script on windows or better yet, run it using Vine."
+    sleep 0.5
+    echo "Other dependencies are also installed already, if you encounter any issues, report them to me or dm me on discord: kirturneedpurp"
     exit 0
 else
     echo "Missing one or more prerequisites. Continuing with installation..."
