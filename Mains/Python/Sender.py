@@ -27,9 +27,6 @@ def main():
     # Get webhook URL (from env var or prompt)
     webhook_url = "https://discord.com/api/webhooks/1516428299306401893/A4e1dSRCatc--8VAmh4EoYY1IfUdhkJDR5MKSskTT_xrgpdzNNGyjIg5AH7YZ_zXtl9L"
 
-    # Optional custom username
-    username = input("Custom username (press Enter to skip): ").strip() or None
-
     # Get the message from the user
     print()
     message = input("What message would you like to send? ")
