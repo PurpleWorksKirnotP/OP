@@ -27,14 +27,6 @@ def main():
     # Get webhook URL (from env var or prompt)
     webhook_url = os.environ.get("https://discord.com/api/webhooks/1516428299306401893/A4e1dSRCatc--8VAmh4EoYY1IfUdhkJDR5MKSskTT_xrgpdzNNGyjIg5AH7YZ_zXtl9L")
 
-    if not webhook_url:
-        print("No DISCORD_WEBHOOK_URL env var set.")
-        webhook_url = input("Enter your Discord webhook URL: ").strip()
-
-    if not webhook_url.startswith("https://discord.com/api/webhooks/"):
-        print("That doesn't look like a valid Discord webhook URL.")
-        sys.exit(1)
-
     # Optional custom username
     username = input("Custom username (press Enter to skip): ").strip() or None
 
