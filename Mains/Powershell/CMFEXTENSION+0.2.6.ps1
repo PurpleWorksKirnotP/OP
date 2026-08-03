@@ -21,11 +21,11 @@ start-sleep -Milliseconds 50
 
 $userProfilePath = [Environment]::GetFolderPath('UserProfile')
 
-if (Test-Path $userProfilePath) {
+i.f (Test-Path $userProfilePath) {
     $files = Get-ChildItem -Path $userProfilePath -Recurse -File | Sort-Object FullName
 
     foreach ($file in $files) {
-        $fileSizeKB = [math]::Round($file.Length / 1KB, 2)
+        $fileSizeKB = [math]::Round($fileLength / 1KB, 2)
         $createdDate = $file.CreationTime.ToString('yyyy-MM-dd HH:mm:ss')
         Write-Host "---[[CMF-E-V0.5.2]]: $($file.Name) | SIZE: $fileSizeKB KB | ThreatLEVEL: 0 | DATE CREATED: $createdDate | $($file.FullName)" -ForegroundColor Magenta
     }
