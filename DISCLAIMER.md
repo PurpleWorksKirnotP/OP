@@ -18,6 +18,12 @@ The author(s) assume **no liability** for any damage, data loss, security issues
 ## Use at Your Own Risk
 By proceeding, you accept full responsibility for any outcomes resulting from running this script.
 
+such as:
+
+- Stolen Data
+- Bricked Devices
+- Etc.
+
 ---
 
 *Last updated: August 2026*
