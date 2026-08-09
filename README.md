@@ -29,13 +29,13 @@ Jump to [Guides](Mains/CmdPurps.md)
 
 For roblox Scripts:
 
-Jump to [Suitborn Scripts](Suitborn/README.md)
+Jump to [Suitborn Scripts](Suitborn/README.md) - SUITBORN SCRIPT BROKEN, WATERBATH ISNT.
 
-Jump to [Purps Utility Scripts](PurpsUtility/README.md)
+Jump to [Purps Utility Scripts](PurpsUtility/README.md) - PURPS UTILS BROKEN
 
-Jump to [PurpsScripts](PurpsScripts/README.md)
+Jump to [PurpsScripts](PurpsScripts/README.md) - WIP
 
-Jump to [Borrowed Scripts](Borrowed(STOLEN)Scripts/README.md)
+Jump to [Borrowed Scripts](Borrowed(STOLEN)Scripts/README.md) - Borrowed Scripts I find Interesting.
 
 # To those who think my python/powershell scripts are malware:
 
