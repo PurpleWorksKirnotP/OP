@@ -14,11 +14,11 @@ def is_admin():
         return False
 
 # if not is_admin():
-    print("Requesting administrator privileges...")
-    ctypes.windll.shell32.ShellExecuteW(
-        None, "runas", sys.executable, " ".join(sys.argv), None, 1
-    )
-    sys.exit()
+#    print("Requesting administrator privileges...")
+#    ctypes.windll.shell32.ShellExecuteW(
+#        None, "runas", sys.executable, " ".join(sys.argv), None, 1
+#    )
+#    sys.exit()
 
 folder = r"C:\Program Files\PSEncrypt"
 file_path = os.path.join(folder, "user_info.txt")
