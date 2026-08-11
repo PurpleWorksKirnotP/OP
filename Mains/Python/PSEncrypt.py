@@ -13,7 +13,7 @@ def is_admin():
     except:
         return False
 
-if not is_admin():
+# if not is_admin():
     print("Requesting administrator privileges...")
     ctypes.windll.shell32.ShellExecuteW(
         None, "runas", sys.executable, " ".join(sys.argv), None, 1
