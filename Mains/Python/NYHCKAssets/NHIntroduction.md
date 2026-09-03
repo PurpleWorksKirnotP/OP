@@ -26,6 +26,12 @@ MacOS:
 python3 -c "$(curl -fsSL https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py)"
 ```
 
+DUMMED DOWN (SMALL LNX DISTROS ONLY):
+
+```
+python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py').read().decode('utf-8'))"
+```
+
 REQUIREMENTS: Requests
 
 Quick 1 line install for both systems (MUST NEED PYTHON INSTALLED)
