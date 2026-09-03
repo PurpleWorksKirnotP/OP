@@ -14,7 +14,7 @@ import random
 tn = "---[NyaHax]:"
 
 print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
-print(f"Made and maintained by purpleworkskirnotp on github... | V {content}")
+print(f"Made and maintained by purpleworkskirnotp on github... | V {content} or 0.0.9 (HARDCODED)")
 print(f"")
 
 h = """
@@ -46,6 +46,7 @@ Go crrrrazy~! Nya~!
 = Infection -
 
 - bn <ProgramToInject> <True/False> - Infects devices to botnet
+- pswdCrack <username> <site> - Cracks passwords.. 70/30 success rate.
 - DDOS, SOL, NHZD <IP> - Overwhelms servers/ips using infected devices
 
 = Panic -
@@ -62,8 +63,75 @@ bnetted = False
 bndn = 0
 Sij = False
 
-
 ips = {}
+
+# Below this are the actual funcs
+
+def pswdc(user, site):
+    print(f"{tn} Starting Password Crack Process...")
+    print(f"{tn} User: {user}")
+    print(f"{tn} Site: {site}")
+    print(f"==========================================")
+    print(f"{tn} Starting method 1: SQL Injection")
+    time.sleep(1)
+    lotto = random.randint(1,2)
+    filn = {
+        "passwords",
+        "supportteampasswords",
+        "adminpasswords",
+        "ownpasswords",
+        "secret",
+        "sitekeys",
+        "environtest",
+        "ITtechdeppsd"
+    }
+    fileex = {
+        ".kdb",
+        ".kbdx",
+        ".lpux",
+        ".agilekeychain",
+        ".dash",
+        ".ppk",
+        ".pem",
+        ".cer",
+        ".der",
+        ".pfx",
+        ".p12",
+        ".pub",
+        ".env",
+        ".conf",
+        ".config",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".xml",
+        ".plist",
+        ".txt",
+        ".csv",
+        ".xls",
+        ".xlsx",
+        ".bak",
+        ".old",
+        ".tmp"
+    }
+    if lotto == 1:
+        print(f"{tn} Success! found default STEA password!")
+        time.sleep(1)
+        print(f"{tn} password: SUPPORT{site}U{user}N{random.randint(1000,9999)}")
+    else:
+        print(f"{tn} Searching local storage...")
+        time.sleep(0.2)
+        for i in range(10, random.randint(100,999)):
+            print(f"{tn} SEARCHED LOCAL STORAGE: FOUND: {random.choice(filn)}{random.choice(fileex)} CHECKING SERVER IF IT EXISTS")
+            for i in range(5, 10):
+                print(f"{tn} AM > REQUEST:FLFOUND(FILEN:FILEX).CHECK()")
+                time.sleep(0.2)
+                print(f"{tn} FOUND AT SERVER {i}, SITE {site}")
+            time.sleep(0.01)
+        print(f"{tn} success! found IT Support Easy Access Password: SUPPORT{site}U{user}N{random.randint(1000,9999)}")
+    print(f"{tn} Cracking finished. Try password at your own risk...")
+    print(f"{tn} IT Support Desk Employees can detect who logins at accounts, be careful.")
+
 
 def SOL(ip, host):
     global Sij
@@ -218,7 +286,7 @@ def lc():
 
     if localhosting == False:
         print(f"{tn} Routing Operations To Localhost, Nya!")
-        for i in range(1, 1001):
+        for i in range(1, random.randint(1001, 9999)):
             print(f"{tn} OPERATION ROUTED FROM {random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)} TO LOCALHOST")
             time.sleep(0.01)
         print(f"{tn} Ready To Host Payload. Recommended =  IPInj")
@@ -235,6 +303,8 @@ def lc():
             print(f"{tn} Exitting")
 
 print(h)
+
+# DONT TOUCH TESTA TESTB
 
 testa = 12
 testb = 13
@@ -284,5 +354,10 @@ while True:
         break
     elif flag in ["-ddos", "-sol", "-nhzd"]:
         SOL(context, context2)
+    elif flag in ["-pswdcrack","-pcrack","-pc","passwordcrack"]:
+        if localhosting == True:
+            pswdc(context, context2)
+        else:
+            print(f"{tn} This command requires -lc")
     else:
         print(f"{tn} command not found... Try typing -h")
