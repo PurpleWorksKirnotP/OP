@@ -41,3 +41,28 @@ pip install requests
 ```
 
 Software is easy to understand.
+
+## Guide (+ Install guide for IOS):
+
+Installing iSH Shell on your iphone/tablet
+
+Step 1: Go to appstore
+Step 2: search up iSH Shell and download it.
+Step 3: Open iSh Download these packages:
+
+```
+apk add python3
+apk add py3-pip
+---
+
+Step 4: Go back to this github page and copy dummed down ver. launch command
+Step 5: Proceed to running script section
+
+Running Script
+
+Step 1: do -lc
+Step 2: do -sij <fakeIP> or -ipinj <fakeIP>
+Step 2.1: do -lc again and stop localhosting
+Step 3: Do anything under Payload Management, Infection (use -h to find the commands listed under em)
+
+More commands will be added soon, I'm just too darn lazy.
