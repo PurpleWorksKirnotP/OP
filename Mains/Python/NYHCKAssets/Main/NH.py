@@ -3,9 +3,9 @@ encoding="utf-8"
 import requests
 
 try:
-    content = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
+    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
 except Exception as e:
-    content = f"OFFLINE..."
+    version = f"OFFLINE..."
     print(f"Offline mode, using fallback: {e}")
 
 import time
@@ -14,7 +14,7 @@ import random
 tn = "---[NyaHax]:"
 
 print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
-print(f"Made and maintained by purpleworkskirnotp on github... | V {content}")
+print(f"Made and maintained by purpleworkskirnotp on github... | V {version}")
 print(f"")
 
 h = """
@@ -493,6 +493,17 @@ print(h)
 testa = 12
 testb = 13
 
+inta = input("enter your operating system. [ios/windows/linux]: ").lower()
+
+if inta == "ios":
+    print(f"Running NyaHax {version} on IOS/Mac")
+    onIos = True
+elif inta == "windows":
+    print(f"Running NyaHax {version} on Windows.")
+    onWindows = True
+else:
+    print(f"Running Nyahax {version} on Linux.")
+
 while True:
     uwu = input(f"{tn} ")
 
@@ -559,13 +570,13 @@ while True:
         if onIos == True:
             DbIOS()
         else:
-            print(f"{tn} You're on windows. do -dbwin instead.")
+            print(f"{tn} You're on windows. do -dbwin instead OR -dball for a general debloat if on Linux.")
     elif flag in ["-dbwin", "-dbwindows", "debloatwindows"]:
         if onWindows == True:
             dbwin()
         else:
-            print(f"You're on IOS. do -dbios instead.")
-    elif flag in ["-dbALL", "-dbgen", "gendebloat", "generaldebloat", "-allosdebloat"]:
+            print(f"You're on IOS. do -dbios instead OR -dball for a general debloat if on linux.")
+    elif flag in ["-dball", "-dbgen", "gendebloat", "generaldebloat", "-allosdebloat"]:
         dbALL()
     else:
         print(f"{tn} command not found... Try typing -h")
