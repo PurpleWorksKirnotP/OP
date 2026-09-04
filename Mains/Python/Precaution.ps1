@@ -9,6 +9,8 @@ if (-not $curlPath) {
 
     winget install --id curl.se.curl -e --source winget
 
+    winget install Python.Python.3.13s
+
     Write-Host ""
     Write-Host "$ToolName curl has been installed." -ForegroundColor Green
     Write-Host "$ToolName Please CLOSE this PowerShell window and open a new one," -ForegroundColor Cyan
