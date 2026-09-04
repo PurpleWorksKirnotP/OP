@@ -16,10 +16,6 @@ import random
 
 tn = "---[NyaHax]:"
 
-print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
-print(f"Made and maintained by purpleworkskirnotp on github... | V {version}")
-print(f"")
-
 h = """
    ________  ________  ________      ________  ________  ________  ____ ___ 
   ╱    ╱   ╲╱    ╱   ╲╱        ╲    ╱    ╱   ╲╱        ╲╱        ╲╱    ╱   ╲
@@ -533,8 +529,6 @@ def lc():
         else:
             print(f"{tn} Exitting")
 
-print(h)
-
 testa = 12
 testb = 13
 
@@ -548,6 +542,12 @@ elif inta == "windows":
     onWindows = True
 else:
     print(f"Running Nyahax {version} on Linux.")
+
+print()
+print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
+print(f"Made and maintained by purpleworkskirnotp on github... | V {version}")
+print(f"")
+print(h)
 
 while True:
     uwu = input(f"{tn} ")

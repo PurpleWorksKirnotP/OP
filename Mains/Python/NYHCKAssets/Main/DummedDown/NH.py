@@ -1,6 +1,9 @@
 encoding="utf-8"
 
 import requests
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
 
 try:
     content = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
@@ -512,5 +515,9 @@ while True:
                     print(f"{tn} exitted")
             else:
                 malbuild(context)
+    elif flag in ["whatishacking"]:
+        definitionofhacking()
+    elif flag in ["whatisabotnet"]:
+        whatisbotnet()
     else:
         print(f"{tn} command not found... Try typing -h")
