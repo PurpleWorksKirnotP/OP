@@ -1,6 +1,9 @@
 encoding="utf-8"
 
 import requests
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
 
 try:
     version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
@@ -31,6 +34,11 @@ Go crrrrazy~! Nya~!
 
 - h = prints this message 
 - exit, e, -e = Exits NH
+
+= Info -
+
+- WhatIsHacking = Gives a definition of hacking in cyber security.
+- WhatIsABotnet = Gives a definition of botnets and how they work.
 
 = Payload hosting - 
 
@@ -121,6 +129,45 @@ filenames = {
 ips = {}
 
 # Actual Funcs Below
+
+def tt(text, delay):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()
+
+def definitionofhacking():
+    print(f"{tn} Info: ")
+    tt("Hacking in cyber security refers to the misuse of devices like computers, smartphones, tablets, and networks to cause damage to or corrupt systems, gather information on users, steal data and documents, or disrupt data-related activity.", 0.02)
+    time.sleep(1)
+    print()
+    tt("A traditional view of hackers is a lone rogue programmer who is highly skilled in coding and modifying computer software and hardware systems. But this narrow view does not cover the true technical nature of hacking. Hackers are increasingly growing in sophistication, using stealthy attack methods designed to go completely unnoticed by cybersecurity software and IT teams. They are also highly skilled in creating attack vectors that trick users into opening malicious attachments or links and freely giving up their sensitive personal data.", 0.02)
+    time.sleep(1)
+    print()
+    tt("An attack vector is a pathway or method used by a hacker to illegally access a network or computer in an attempt to exploit system vulnerabilities. Hackers use numerous attack vectors to launch attacks that take advantage of system weaknesses, cause a data breach, or steal login credentials. Such methods include sharing malware and viruses, malicious email attachments and web links, pop-up windows, and instant messages that involve the attacker duping an employee or individual user.", 0.02)
+    time.sleep(1)
+    print()
+    tt("As a result, modern-day hacking involves far more than just an angry kid in their bedroom. It is a multibillion-dollar industry with extremely sophisticated and successful techniques.", 0.02)
+
+def whatisbotnet():
+    print(f"{tn} Info: ")
+    tt("A botnet is a coordinated network of internet-connected devices—including computers, mobile phones, and IoT hardware—infected with specialized malware that grants remote control to a single attacking party. These hijacked devices, often called zombies, act in unison under the command of a bot-herder to execute automated, large-scale cyberattacks that would be impossible for a single machine to perform.", 0.01)
+    print()
+    time.sleep(1)
+    tt("Key Points:", 0.01)
+    print()
+    tt("- Distributed Power: Botnets harness the collective computing resources of thousands of compromised systems to amplify the impact of cyberattacks. ", 0.05)
+    print()
+    tt("- Silent Operation: Infected devices typically continue to function normally, leaving the owner unaware that their hardware is participating in malicious activity. ", 0.05)
+    print()
+    tt("- Automated Scalability: A single bot-herder can manage millions of globally dispersed nodes simultaneously through a centralized or decentralized command structure. ", 0.05)
+    print()
+    tt("- Versatile Weaponry: Threat actors utilize these networks for diverse objectives, ranging from crippling websites with traffic to harvesting sensitive corporate credentials. ", 0.05)
+    print()
+    tt("- Persistent Risk: Modern botnets employ advanced evasion techniques, such as domain-generation algorithms, to maintain control even when parts of their infrastructure are dismantled. ", 0.05)
+    
+
 
 def DbIOS():
     global onIos
@@ -578,5 +625,9 @@ while True:
             print(f"You're on IOS. do -dbios instead OR -dball for a general debloat if on linux.")
     elif flag in ["-dball", "-dbgen", "gendebloat", "generaldebloat", "-allosdebloat"]:
         dbALL()
+    elif flag in ["whatishacking"]:
+        definitionofhacking()
+    elif flag in ["whatisabotnet"]:
+        whatisbotnet()
     else:
         print(f"{tn} command not found... Try typing -h")
