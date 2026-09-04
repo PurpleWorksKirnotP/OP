@@ -166,8 +166,6 @@ def whatisbotnet():
     tt("- Versatile Weaponry: Threat actors utilize these networks for diverse objectives, ranging from crippling websites with traffic to harvesting sensitive corporate credentials. ", 0.05)
     print()
     tt("- Persistent Risk: Modern botnets employ advanced evasion techniques, such as domain-generation algorithms, to maintain control even when parts of their infrastructure are dismantled. ", 0.05)
-    
-
 
 def DbIOS():
     global onIos
