@@ -1,3 +1,7 @@
+# NEW: Larp Larp Tool
+
+Jump to [LarpLarp Page](../Mains/Python/NYHCKAssets/NHIntroduction.md)
+
 # How to use CMF (Power shell)
 
 ## Prerequisites:
