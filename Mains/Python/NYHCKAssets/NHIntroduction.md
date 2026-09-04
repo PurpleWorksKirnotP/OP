@@ -18,8 +18,10 @@ python3 -c "$(curl -fsSL https://raw.githubusercontent.com/PurpleWorksKirnotP/OP
 
 Windows:
 
+https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py
+
 ```
-python -c "(Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py').Content | Invoke-Expression"
+python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py').read().decode('utf-8'))"
 ```
 
 MacOS:
