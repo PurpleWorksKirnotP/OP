@@ -51,6 +51,12 @@ Go crrrrazy~! Nya~!
 - Stop <IP> = Terminates all processes being run on IP and deletes NyaHOS on IP.
 - l, list = lists all infected IPs (Including soft injected)
 
+= Illusionary! - Trick the world.
+
+- BA, BotAccounts - Creates fake bot accounts on multiple social media platforms. (REQUIRES SIJ)
+- RepostRepos, RR <RepoURL> - Puts backdoors in github repos and reposts them to botted accounts. (REQUIRES SIJ)
+- ListRepos, LR - Lists all repos that can be reposted. (REQUIRES SIJ)
+
 = Infection -
 
 - bn <ProgramToInject> <True/False> - Infects devices to botnet
@@ -64,6 +70,22 @@ Go crrrrazy~! Nya~!
 - panic, p - Disconnects everything and exits.
 
 """
+
+offurlrepos = {
+    "https://github.com/mattpocock/skills",
+    "https://github.com/dietrichgebert/ponytail",
+    "https://github.com/fmtlib/fmt",
+    "https://github.com/affaan-m/ecc",
+    "https://github.com/anthropics/skills",
+    "https://github.com/blader/humanizer",
+    "https://github.com/nousresearch/hermes-agent",
+    "https://github.com/juliusbrussee/caveman",
+    "https://github.com/magnitudedev/magnitude",
+    "https://github.com/bikini/exploitarium",
+    "https://github.com/bannedbook/fanqiang",
+    "https://github.com/debpalash/voicestudio",
+    "https://github.com/google-research/timesfm"
+}
 
 def add_entry(table, ip):
     table[ip] = True
@@ -126,6 +148,34 @@ def tt(text, delay):
         sys.stdout.flush()
         time.sleep(delay)
     print()
+
+# Type writter func ^^
+
+def botaccs():
+    if bnetted == True:
+        print(f"{tn} Starting account creation on multiple platforms...")
+        print(f"{tn} Creating {bndn} accounts on platform {random.choice(['Twitter', 'Instagram', 'Facebook', 'Reddit', 'GitHub'])} | Account LID: {random.randint(1000,9999999)}")
+        for i in range(1, bndn + 1):
+            print(f"{tn} Account {i} created! | Account LID: {random.randint(1000,9999999)}")
+            time.sleep(0.001)
+        time.sleep(0.01)
+    else:
+        print(f"{tn} This command requires a botnet to be created first. Use -bn <program> <True/False> to create a botnet.")
+
+def listrepos():
+    print(f"{tn} Listing all repos...")
+    for repo in offurlrepos:
+        print(f"{tn} {repo}")
+    print(f"{tn} Total repos: {len(offurlrepos)}")
+
+def repostrepos(repo):
+    if repo in offurlrepos and bnetted == True:
+        print(f"{tn} Reposting {repo} on {bndn} bot accounts...")
+        for i in range(1, bndn + 1):
+            print(f"{tn} Reposted {repo} with backdoor on bot account {i} | Account LID: {random.randint(1000,9999999)}")
+            time.sleep(0.001)
+    else:
+        print(f"{tn} Repo {repo} not found. OR Botnet not created. Use -bn <program> <True/False> to create a botnet.")
 
 def definitionofhacking():
     print(f"{tn} Info: ")
@@ -519,5 +569,11 @@ while True:
         definitionofhacking()
     elif flag in ["whatisabotnet"]:
         whatisbotnet()
+    elif flag in ["-ba", "botaccounts"]:
+        botaccs()
+    elif flag in ["-lr", "listrepos"]:
+        listrepos()
+    elif flag in ["-rr", "repostrepos"]:
+        repostrepos(context)
     else:
         print(f"{tn} command not found... Try typing -h")
