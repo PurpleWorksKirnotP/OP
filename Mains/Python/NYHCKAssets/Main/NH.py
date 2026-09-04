@@ -57,13 +57,174 @@ Go crrrrazy~! Nya~!
 def add_entry(table, ip):
     table[ip] = True
 
+# Vars for functions
+
 localhosting = False
 bnetted = False
 bndn = 0
 Sij = False
+malb = False
 
+fileextensions = {
+    ".exe",
+    ".dll",
+    ".scr",
+    ".vbs",
+    ".js",
+    ".bat",
+    ".cmd",
+    ".docm",
+    ".xlsm",
+    ".ps1",
+    ".jar",
+    ".msi",
+    ".com",
+    ".pegasusmal",
+}
+
+filenames = {
+    "invoice",
+    "update",
+    "svchost",
+    "winlogon",
+    "driver",
+    "config",
+    "readme",
+    "setup",
+    "install",
+    "patch",
+    "license",
+    "manual",
+    "support",
+    "admin",
+    "system",
+    "security",
+    "network",
+    "backup",
+    "database",
+    "log"
+}
 
 ips = {}
+
+# Actual Funcs Below
+
+def malbuild(progn):
+    global malb
+    global Sij
+    if Sij == True:
+        malb = True
+        print(f"{tn} STARTING MALBUILD...")
+        print(f"{tn} PROGRAM: {progn}")
+        time.sleep(1)
+        print(f"{tn} Compiling spyware and mining files into {progn}...")
+        for i in range(1, random.randint(100, 1001)):
+            print(f"{tn} Adding {random.choice(filenames)}{random.randint(1000, 99999)}{random.choice(fileextensions)} to {progn} payload...")
+            time.sleep(0.001)
+        time.sleep(1)
+        print(f"{tn} Successfully added files to {progn} payload. | Total Size: {random.randint(50, 500)} MB")
+        print()
+        print(f"{tn} Adding {progn} to Device Hijack Payloads...")
+        time.sleep(1)
+        print(f"{tn} Successfully added {progn} to Device Hijack Payloads.")
+        print(f"{tn} Do -dh <deviceID> <IP> to hijack devices with {progn} payload.")
+    else:
+        print(f"{tn} This command requires -sij to be enabled first.")
+
+def dh(deviceip, ip):
+    print(f"{tn} initiating attack on {ip}")
+    for i in range(1, random.randint(100, 1001)):
+        print(f"{tn} Attempting OS Flash on IP/Server: {ip} | Attempt: {i}")
+        time.sleep(0.01)
+    time.sleep(1)
+    print(f"{tn} Successfully flashed OS onto {ip} | Hijacking device {deviceip} with infected files...")
+    for i in range(1, random.randint(100, 1001)):
+        print(f"{tn} FILES TRANSFERED: {i} | DEVICEID: {deviceip} | IP: {ip} | SIZE: {random.randint(10, 500)} MB")
+        time.sleep(0.001)
+    time.sleep(1)
+    print(f"{tn} successfully transfered files to {deviceip}! Enabling mining on device...")
+    uinp = input(f"{tn} Enable descrete mining on device? [Y/N]: ").strip().lower()
+    if uinp in ("y", "yes"):
+        print(f"{tn} Enabling descrete mining on device {deviceip}...")
+        for i in range(1, random.randint(100, 1001)):
+            print(f"{tn} CONVERTED COMPRESSED FILE TO MINING FILE... | DEVICEID: {deviceip} | IP: {ip} | SIZE: {random.randint(50, 150)} MB")
+            time.sleep(0.001)
+        time.sleep(1)
+        print(f"{tn} Successfully enabled mining on device {deviceip} | IP: {ip} | Mining Rate: {random.randint(50, 100)} MH/s")
+    else:
+        print(f"{tn} Enabling blatant mining on device {deviceip}...")
+        for i in range(1, random.randint(100, 1001)):
+            print(f"{tn} CONVERTED COMPRESSED FILE TO MINING FILE... | DEVICEID: {deviceip} | IP: {ip} | SIZE: {random.randint(100, 1500)} MB")
+            time.sleep(0.001)
+        time.sleep(1)
+        print(f"{tn} Successfully enabled mining on device {deviceip} | IP: {ip} | Mining Rate: {random.randint(200, 500)} MH/s")
+    print(f"{tn} Hijack finished. Device {deviceip} is now mining bitcoin for you.")
+    print(f"{tn} Awaiting new command...")
+
+def pswdc(user, site):
+    print(f"{tn} Starting Password Crack Process...")
+    print(f"{tn} User: {user}")
+    print(f"{tn} Site: {site}")
+    print(f"==========================================")
+    print(f"{tn} Starting method 1: SQL Injection")
+    time.sleep(1)
+    lotto = random.randint(1,2)
+    filn = {
+        "passwords",
+        "supportteampasswords",
+        "adminpasswords",
+        "ownpasswords",
+        "secret",
+        "sitekeys",
+        "environtest",
+        "ITtechdeppsd"
+    }
+    fileex = {
+        ".kdb",
+        ".kbdx",
+        ".lpux",
+        ".agilekeychain",
+        ".dash",
+        ".ppk",
+        ".pem",
+        ".cer",
+        ".der",
+        ".pfx",
+        ".p12",
+        ".pub",
+        ".env",
+        ".conf",
+        ".config",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".xml",
+        ".plist",
+        ".txt",
+        ".csv",
+        ".xls",
+        ".xlsx",
+        ".bak",
+        ".old",
+        ".tmp"
+    }
+    if lotto == 1:
+        print(f"{tn} Success! found default STEA password!")
+        time.sleep(1)
+        print(f"{tn} password: SUPPORT{site}U{user}N{random.randint(1000,9999)}")
+    else:
+        print(f"{tn} Searching local storage...")
+        time.sleep(0.2)
+        for i in range(10, random.randint(100,999)):
+            print(f"{tn} SEARCHED LOCAL STORAGE: FOUND: {random.choice(filn)}{random.choice(fileex)} CHECKING SERVER IF IT EXISTS")
+            for i in range(5, 10):
+                print(f"{tn} AM > REQUEST:FLFOUND(FILEN:FILEX).CHECK()")
+                time.sleep(0.2)
+                print(f"{tn} FOUND AT SERVER {i}, SITE {site}")
+            time.sleep(0.01)
+        print(f"{tn} success! found IT Support Easy Access Password: SUPPORT{site}U{user}N{random.randint(1000,9999)}")
+    print(f"{tn} Cracking finished. Try password at your own risk...")
+    print(f"{tn} IT Support Desk Employees can detect who logins at accounts, be careful.")
 
 def SOL(ip, host):
     global Sij
