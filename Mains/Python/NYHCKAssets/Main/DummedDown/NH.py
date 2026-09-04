@@ -6,19 +6,15 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    content = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
+    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
 except Exception as e:
-    content = f"OFFLINE..."
+    version = f"OFFLINE..."
     print(f"Offline mode, using fallback: {e}")
 
 import time
 import random
 
 tn = "---[NyaHax]:"
-
-print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
-print(f"Made and maintained by purpleworkskirnotp on github... | V {content} or 0.0.9 (HARDCODED)")
-print(f"")
 
 h = """
    ________  ________  ________      ________  ________  ________  ____ ___ 
@@ -489,6 +485,22 @@ def lc():
             localhosting = False
         else:
             print(f"{tn} Exitting")
+
+inta = input("enter your operating system. [ios/windows/linux]: ").lower()
+
+if inta == "ios":
+    print(f"Running NyaHax {version} on IOS/Mac")
+    onIos = True
+elif inta == "windows":
+    print(f"Running NyaHax {version} on Windows.")
+    onWindows = True
+else:
+    print(f"Running Nyahax {version} on Linux.")
+
+print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
+print(f"Made and maintained by purpleworkskirnotp on github... | V {version}")
+print(f"")
+print(h)
 
 # DONT TOUCH TESTA TESTB
 
