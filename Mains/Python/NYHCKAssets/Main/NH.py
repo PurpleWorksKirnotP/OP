@@ -45,7 +45,7 @@ Go crrrrazy~! Nya~!
 
 = Infection -
 
-- bn <ProgramToInject> <True/False> - Infects devices to botnet
+- bn <ProgramToInject> <True/False> - Infects devices to botnet.
 - pswdCrack <username> <site> - Cracks passwords.. 70/30 success rate.
 - DDOS, SOL, NHZD <IP> - Overwhelms servers/ips using infected devices
 - dh, dhijack, devicehijack <deviceID> <IP> - Hijacks specific devices and forces them to mine bitcoin (REQUIRES SIJ, MALBUILD)
