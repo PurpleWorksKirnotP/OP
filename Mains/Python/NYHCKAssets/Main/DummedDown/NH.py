@@ -455,5 +455,20 @@ while True:
             dh(context, context2)
         else:
             print(f"{tn} This command requires -sij")
+    elif flag in ["-dh", "-dhijack", "-devicehijack"]:
+            if malb == True and Sij == True:
+                dh(context, context2)
+            else:
+                print(f"{tn} This command requires -sij and -malbuild to be enabled first.")
+    elif flag in ["-malbuild", "-mb", "-malwarebuild"]:
+            if malb == True:
+                print(f"{tn} You cannot malbuild again. Would you like to disable soft inject and re-enable it?")
+                ui = input("[y/n]: ").lower()
+                if ui in ["y", "yes"]:
+                    malbuild(context)
+                else:
+                    print(f"{tn} exitted")
+            else:
+                malbuild(context)
     else:
         print(f"{tn} command not found... Try typing -h")

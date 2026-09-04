@@ -247,7 +247,6 @@ def SOL(ip, host):
         time.sleep(1)
         print(f"{tn} Successfully overwhelmed server! Awaiting new payload to host on {host}")
         
-
 def panic():
     print(f"{tn} Disconnecting all operations running from {ips}...")
     time.sleep(1)
@@ -339,8 +338,6 @@ def fbotnet(Fprog, bau):
     print(f"{tn} successfully infected {rndnb} devices out of 500!")
     bndn = rndnb
     bnetted = True
-
-
 
 def listinfects():
     global ips
@@ -448,5 +445,22 @@ while True:
         break
     elif flag in ["-ddos", "-sol", "-nhzd"]:
         SOL(context, context2)
+    elif flag in ["-pswdcrack", "-pswdc"]:
+        pswdc(context, context2)
+    elif flag in ["-dh", "-dhijack", "-devicehijack"]:
+        if malb == True and Sij == True:
+            dh(context, context2)
+        else:
+            print(f"{tn} This command requires -sij and -malbuild to be enabled first.")
+    elif flag in ["-malbuild", "-mb", "-malwarebuild"]:
+        if malb == True:
+            print(f"{tn} You cannot malbuild again. Would you like to disable soft inject and re-enable it?")
+            ui = input("[y/n]: ").lower()
+            if ui in ["y", "yes"]:
+                malbuild(context)
+            else:
+                print(f"{tn} exitted")
+        else:
+            malbuild(context)
     else:
         print(f"{tn} command not found... Try typing -h")
