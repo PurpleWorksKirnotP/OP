@@ -38,18 +38,24 @@ Go crrrrazy~! Nya~!
 - IPInj, IPInject <IP> = Force hosts payloads on different IPs
 - SoftInj, sij <IP> <Disable/Enable>
 
-= Payload Management - 
+= Payload Management - Manages Payload hosting.
 
 - Stop <IP> = Terminates all processes being run on IP and deletes NyaHOS on IP.
 - l, list = lists all infected IPs (Including soft injected)
 
-= Infection -
+= General Hacking - Self-Explanitory.
 
 - bn <ProgramToInject> <True/False> - Infects devices to botnet.
 - pswdCrack <username> <site> - Cracks passwords.. 70/30 success rate.
 - DDOS, SOL, NHZD <IP> - Overwhelms servers/ips using infected devices
 - dh, dhijack, devicehijack <deviceID> <IP> - Hijacks specific devices and forces them to mine bitcoin (REQUIRES SIJ, MALBUILD)
 - malbuild, mb, malwarebuild <program>- Builds malware to infect devices and force them to mine bitcoin (REQUIRES SIJ)
+
+= Debloat - Debloats your operating system.
+
+- DbIOS - only meant for IOS devices running on Ish Shell
+- DbWin - only meant for WINDOWS devices.
+- dbALL, dbgen, gendebloat, generaldebloat, -allosdebloat - A General Debloat for all devices. Regardless of hardware.
 
 = Panic -
 
@@ -67,6 +73,10 @@ bnetted = False
 bndn = 0
 Sij = False
 malb = False
+onIos = False
+Randbios = False
+onWindows = False
+RandbWin = False
 
 fileextensions = {
     ".exe",
@@ -111,6 +121,89 @@ filenames = {
 ips = {}
 
 # Actual Funcs Below
+
+def DbIOS():
+    global onIos
+    global Randbios
+    print(f"{tn} Soft Jb running... Pulled from: https://github.com/rooootdev/lara")
+    time.sleep(1)
+    for i in range(1, random.randint(10, 999)):
+        print(f"{tn} PULLED ASSET NO. {i} FROM GITHUB REPO...")
+        for i in range(1,6):
+            print(f"{tn} Decompiling... [{i}/6]")
+            time.sleep(0.001)
+        time.sleep(0.0001)
+    time.sleep(1)
+    print(f"{tn} Success!")
+    for i in range(1, random.randint(100, 150)):
+        print(f"{tn} Scanning main IOS folder for any bloat...")
+        for i in range(1, random.randint(10,20)):
+            print(f"{tn} DELETING FILES [{i}/?]")
+            time.sleep(0.001)
+        print(f"{tn} Searching cache for unnessesary files...")
+        for i in range(1, random.randint(10,20)):
+            print(f"{tn} SCAN RETURNED: FOUND 1 FILE(S) OUT OF ?")
+            time.sleep(0.01)
+            print(f"{tn} DELETING...")
+            print(f"{tn} AM > DEL FILE {random.randint(1000,9999)}")
+            time.sleep(0.001)
+            print(f"{tn} AMR > RETURNED RESULT: DELETED")                    
+        time.sleep(0.0001)
+    print(f"{tn} DEBLOAT SUCCESSFUL. Deleting Lara...")
+    for i in range(1, random.randint(100,999)):
+        print(f"{tn} DELETED ASSET [{i}/?] | FILEID: {random.randint(1000,9999)}")
+        time.sleep(0.001)
+    time.sleep(1)
+    print(f"{tn} Finished!")
+    print(f"---[DETAILEDREV]: Returned results: {random.randint(1000,9999)} files removed... | {random.randint(500,1000)} MB removed. | Estimated Ram usage: {random.randint(1,2)} GB usage. | Successfully Optimized.")
+    onIos = True
+    Randbios = True
+
+def dbwin():
+    global RandbWin
+    global onWindows
+    print(f"{tn} Pulling from: https://github.com/sycnex/windows10debloater...")
+    winset = {
+        "System",
+        "Home",
+        "Bluetooth & Devices",
+        "Network & internet",
+        "Apps",
+        "Time & Language",
+        "Gaming",
+        "Accessibility",
+        "Privacy & security"
+    }
+    for i in range(1,999):
+        print(f"{tn} REMOVING FILE... | FILEID: {random.randint(1,9999)}")
+        time.sleep(0.001)
+    for i in range(1, random.randint(100,999)):
+        print(f"{tn} Configuring Windows Settings Via Terminal... | [{i}/?]")
+        for i in range(1,10):
+            print(f"{tn} In {random.choice(winset)}...")
+            print(f"{tn} Changed setting {random.randint(1,99)} | Pulled from optimization table...")
+            print(f"{tn} AM > sysCh(Fromdbwin:CS):[]")
+            print(f"{tn} AMR > Result: CHANGED:SUCCESS")
+        time.sleep(0.001)
+    time.sleep(1)
+    print(f"{tn} Successfully (half) debloated windows.")
+    RandbWin = True
+    onWindows = True
+
+def dbALL():
+    print(f"{tn} Pulling from optimization table...")
+    for i in range(1, random.randint(1000,9999)):
+        print(f"{tn} AM > NH.py:(SysRun('Mod {random.randint(1,9999)}'))")
+        for i in range(10,51):
+            print(f"{tn} CHANGED {random.randint(1,9999)} ON CURRENT OS")
+            print(f"{tn} CHANGED {random.randint(1,9999)} ON CURRENT OS")
+            print(f"{tn} CHANGED {random.randint(1,9999)} ON CURRENT OS")
+            print(f"{tn} CHANGED {random.randint(1,9999)} ON CURRENT OS")
+            print(f"{tn} CHANGED {random.randint(1,9999)} ON CURRENT OS")
+            print()
+            print(f"{tn} BIOS SET: X{random.randint(1,9999)} TO AA{random.randint(1,9999)}")
+    time.sleep(1)
+    print(f"{tn} Successfully debloated!")
 
 def malbuild(progn):
     global malb
@@ -462,5 +555,17 @@ while True:
                 print(f"{tn} exitted")
         else:
             malbuild(context)
+    elif flag in ["-dbios", "debloatios", "-debloatios"]:
+        if onIos == True:
+            DbIOS()
+        else:
+            print(f"{tn} You're on windows. do -dbwin instead.")
+    elif flag in ["-dbwin", "-dbwindows", "debloatwindows"]:
+        if onWindows == True:
+            dbwin()
+        else:
+            print(f"You're on IOS. do -dbios instead.")
+    elif flag in ["-dbALL", "-dbgen", "gendebloat", "generaldebloat", "-allosdebloat"]:
+        dbALL()
     else:
         print(f"{tn} command not found... Try typing -h")
