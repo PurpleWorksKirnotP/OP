@@ -163,7 +163,7 @@ def dbwin():
     global RandbWin
     global onWindows
     print(f"{tn} Pulling from: https://github.com/sycnex/windows10debloater...")
-    winset = {
+    winset = [
         "System",
         "Home",
         "Bluetooth & Devices",
@@ -173,7 +173,7 @@ def dbwin():
         "Gaming",
         "Accessibility",
         "Privacy & security"
-    }
+    ]
     for i in range(1,999):
         print(f"{tn} REMOVING FILE... | FILEID: {random.randint(1,9999)}")
         time.sleep(0.001)
@@ -182,7 +182,7 @@ def dbwin():
         for i in range(1,10):
             print(f"{tn} In {random.choice(winset)}...")
             print(f"{tn} Changed setting {random.randint(1,99)} | Pulled from optimization table...")
-            print(f"{tn} AM > sysCh(Fromdbwin:CS):[]")
+            print(f"{tn} AM > sysCh(Fromdbwin:CS)")
             print(f"{tn} AMR > Result: CHANGED:SUCCESS")
         time.sleep(0.001)
     time.sleep(1)
