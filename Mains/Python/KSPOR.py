@@ -127,7 +127,9 @@ def Botnetting(ipprovide, targetdevicesnum):
     print(f"{tn} Searching for infected devices...")
     time.sleep(0.5)
     print(f"{tn} Devices found!")
-    for i in range(1, 51)
+    for i in range(1, 51):
+        print(f"{tn} Infecting device {i} of {targetdevicesnum}...")
+        time.sleep(0.1)
 
 art = """
 __________                           
