@@ -55,6 +55,7 @@ Go crrrrazy~! Nya~!
 - BA, BotAccounts - Creates fake bot accounts on multiple social media platforms. (REQUIRES SIJ)
 - RepostRepos, RR <RepoURL> - Puts backdoors in github repos and reposts them to botted accounts. (REQUIRES SIJ)
 - ListRepos, LR - Lists all repos that can be reposted. (REQUIRES SIJ)
+- PegasusMessaging, PMSG <Message> <ProgramToInject> - Sends messages to local devices, infecting them. (REQUIRES SIJ AND MALBUILD)
 
 = Infection -
 
@@ -100,7 +101,7 @@ bndn = 0
 Sij = False
 malb = False
 
-fileextensions = {
+fileextensions = [
     ".exe",
     ".dll",
     ".scr",
@@ -115,9 +116,9 @@ fileextensions = {
     ".msi",
     ".com",
     ".pegasusmal",
-}
+]
 
-filenames = {
+filenames = [
     "invoice",
     "update",
     "svchost",
@@ -138,7 +139,7 @@ filenames = {
     "backup",
     "database",
     "log"
-}
+]
 
 ips = {}
 
@@ -166,7 +167,7 @@ def dnhpy():
 
 # ^^ Download Latest NH.py file ^^
 
-def tt(text, delay):
+def tt(text, delay=0.01):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -174,6 +175,27 @@ def tt(text, delay):
     print()
 
 # Type writter func ^^
+
+def pming(message, program2inj):
+    if Sij == True and malb == True:
+        print(f"{tn} Initiating...")
+        for i in range(1, random.randint(100,999)):
+            print(f"{tn} compiling message {i} with {program2inj}... | Preping to send to ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...")
+            time.sleep(0.0001)
+        time.sleep(1)
+        print(f"{tn} Compiling completed, sending to local devices (Devices on infected Ips too)...")
+        for i in range(1,random.randint(100, 999)):
+            print(f"{tn} SENT TO ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...",0.00001)
+            tt(f"        [INFO]: DEVICE IMEI: {random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}",0.00001)
+            tt(f"        [INFO]: DEVICE IP: {random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}", 0.00001)
+            tt(f"        [INFO]: EXTRACTED INFECTED DEVICE'S USER'S PERSONAL INFO... POSTED ON DOXBIN XD",0.00001)
+            tt(f"        [INFO]: EXTRACTED PHOTOS, FILES, AND DOCUMENTS... SAVED TO NH CLOUD.",0.00001)
+            time.sleep(0.0001)
+        time.sleep(1)
+        print(f"{tn} SUCCESSFULLY SENT ALL MESSAGES SUCCESSFULLY!")
+        tt(f"{tn} AWAITING NEW COMMAND.",0.0001)
+    else:
+        print(f"{tn} SIJ and Malb is required.")
 
 def botaccs():
     if bnetted == True:
@@ -398,13 +420,13 @@ def softipinj(ip):
     print(f"{tn} Soft inject on {ip}...")
     for i in range(1,201):
         print(f"{tn} pinging {ip}... | Attempt {i}")
-        time.sleep(0.1)
+        time.sleep(0.001)
     time.sleep(1)
     print(f"{tn} Stable connection... Making {ip} as a payload hoster...")
     for i in range(1, 201):
         print(f"{tn} MADE REQUEST (POST): [Context: HOSTF(Type:FILE)] Set priority: [HIGH;=200MBPS] | REQUEST {i} OUT OF 200")
         print(f"{tn} MESSAGE RECIEVED FROM SERVER/IP, REQUEST: [Context: ACCEPTED] | MBPS ALLOCATED...")
-        time.sleep(0.01)
+        time.sleep(0.001)
     print(f"{tn} All requests sent! Testing if inject successful...")
     print(f"{tn} AM > ptstpl {ip} true 200")
     for i in range(1,101):
@@ -416,7 +438,7 @@ def softipinj(ip):
     print(f"{tn} Cleaning up files...")
     for i in range (1,101):
         print(f"{tn} DELETING TEST FILE {i} | size {random.randint(10,500)} mb")
-    time.sleep(0.01)
+    time.sleep(0.001)
     print(f"{tn} Cleaned out all test files... Awaiting command on host {ip}...")
     add_entry(ips, ip)
     Sij = True
@@ -618,5 +640,7 @@ while True:
         repostrepos(context)
     elif flag in ["-dn", "downloadnew", "-dwnh"]:   
         dnhpy()
+    elif flag in ["-pmsg", "pegasusmessaging"]:
+        pming(context, context2)
     else:
         print(f"{tn} command not found... Try typing -h")
