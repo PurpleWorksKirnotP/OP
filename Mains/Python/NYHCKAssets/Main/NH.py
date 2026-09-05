@@ -60,6 +60,7 @@ Go crrrrazy~! Nya~!
 - BA, BotAccounts - Creates fake bot accounts on multiple social media platforms. (REQUIRES SIJ)
 - RepostRepos, RR <RepoURL> - Puts backdoors in github repos and reposts them to botted accounts. (REQUIRES SIJ)
 - ListRepos, LR - Lists all repos that can be reposted. (REQUIRES SIJ)
+- PegasusMessaging, PMSG <Message> <ProgramToInject> - Sends messages to local devices, infecting them. (REQUIRES SIJ AND MALBUILD)
 
 = Debloat - Debloats your operating system.
 
@@ -104,7 +105,7 @@ Randbios = False
 onWindows = False
 RandbWin = False
 
-fileextensions = {
+fileextensions = [
     ".exe",
     ".dll",
     ".scr",
@@ -119,9 +120,9 @@ fileextensions = {
     ".msi",
     ".com",
     ".pegasusmal",
-}
+]
 
-filenames = {
+filenames = [
     "invoice",
     "update",
     "svchost",
@@ -142,13 +143,13 @@ filenames = {
     "backup",
     "database",
     "log"
-}
+]
 
 ips = {}
 
 # Actual Funcs Below
 
-def tt(text, delay):
+def tt(text, delay=0.01):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -156,6 +157,27 @@ def tt(text, delay):
     print()
 
 # Type-writer func ^^
+
+def pming(message, program2inj):
+    if Sij == True and malb == True:
+        print(f"{tn} Initiating...")
+        for i in range(1, random.randint(100,999)):
+            print(f"{tn} compiling message {i} with {program2inj}... | Preping to send to ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...")
+            time.sleep(0.0001)
+        time.sleep(1)
+        print(f"{tn} Compiling completed, sending to local devices (Devices on infected Ips too)...")
+        for i in range(1,random.randint(100, 999)):
+            print(f"{tn} SENT TO ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...",0.00001)
+            tt(f"        [INFO]: DEVICE IMEI: {random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}",0.00001)
+            tt(f"        [INFO]: DEVICE IP: {random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}", 0.00001)
+            tt(f"        [INFO]: EXTRACTED INFECTED DEVICE'S USER'S PERSONAL INFO... POSTED ON DOXBIN XD",0.00001)
+            tt(f"        [INFO]: EXTRACTED PHOTOS, FILES, AND DOCUMENTS... SAVED TO NH CLOUD.",0.00001)
+            time.sleep(0.0001)
+        time.sleep(1)
+        print(f"{tn} SUCCESSFULLY SENT ALL MESSAGES SUCCESSFULLY!")
+        tt(f"{tn} AWAITING NEW COMMAND.")
+    else:
+        print(f"{tn} SIJ and Malb is required.")
 
 def botaccs():
     if bnetted == True:
@@ -307,7 +329,7 @@ def malbuild(progn):
         print(f"{tn} Compiling spyware and mining files into {progn}...")
         for i in range(1, random.randint(100, 1001)):
             print(f"{tn} Adding {random.choice(filenames)}{random.randint(1000, 99999)}{random.choice(fileextensions)} to {progn} payload...")
-            time.sleep(0.001)
+            time.sleep(0.00001)
         time.sleep(1)
         print(f"{tn} Successfully added files to {progn} payload. | Total Size: {random.randint(50, 500)} MB")
         print()
@@ -463,7 +485,7 @@ def softipinj(ip):
     print(f"{tn} Soft inject on {ip}...")
     for i in range(1,201):
         print(f"{tn} pinging {ip}... | Attempt {i}")
-        time.sleep(0.1)
+        time.sleep(0.0001)
     time.sleep(1)
     print(f"{tn} Stable connection... Making {ip} as a payload hoster...")
     for i in range(1, 201):
@@ -683,5 +705,7 @@ while True:
         listrepos()
     elif flag in ["-rr", "repostrepos"]:
         repostrepos(context)
+    elif flag in ["-pmsg", "pegasusmessaging"]:
+        pming(context, context2)
     else:
         print(f"{tn} command not found... Try typing -h")
