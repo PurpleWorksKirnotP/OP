@@ -2,6 +2,7 @@ encoding="utf-8"
 
 import requests
 import sys
+import os
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -16,11 +17,13 @@ import random
 
 tn = "---[NyaHax]:"
 
+# to note: This is a larp larp tool. U aren't hacking anything script kiddie
+
 h = """
    ________  ________  ________      ________  ________  ________  ____ ___ 
   ╱    ╱   ╲╱    ╱   ╲╱        ╲    ╱    ╱   ╲╱        ╲╱        ╲╱    ╱   ╲
  ╱         ╱         ╱         ╱   ╱         ╱         ╱         ╱         ╱
-╱         ╱╲__      ╱         ╱   ╱         ╱         ╱       --╱        _╱ 
+╱         ╱╲__      ╱         ╱   ╱         ╱         ╱       --╱        _╱
 ╲__╱_____╱   ╲_____╱╲___╱____╱    ╲___╱____╱╲___╱____╱╲________╱╲____╱___╱  
 Go crrrrazy~! Nya~!
 
@@ -65,6 +68,9 @@ Go crrrrazy~! Nya~!
 
 - panic, p - Disconnects everything and exits.
 
+= Download latest NH
+
+- downloadNew, dn, dwnh - Downloads latest NH.py file from github. (REQUIRES INTERNET)
 """
 
 offurlrepos = {
@@ -137,6 +143,28 @@ filenames = {
 ips = {}
 
 # Below this are the actual funcs
+
+def dnhpy():
+    import urllib.request
+
+    url = "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py"
+
+    if onWindows == True:
+        Woutput_file = f"C:\\users\\{usrlgn}\\downloads\\{url.split('/')[-1]}"
+        urllib.request.urlretrieve(url, Woutput_file)
+        print(f"{tn} Saved as: {Woutput_file} saved in downloads folder.")
+    elif onIos == True:
+        Ioutput_file = f"/home/{url.split('/')[-1]}"
+        urllib.request.urlretrieve(url, Ioutput_file)
+        print(f"{tn} Saved as: {Ioutput_file} in /home do cd /home to access it.")
+    else:
+        print(f"{tn} We're assuming you're on Linux. Saving to /home/{url.split('/')[-1]}...")
+        Loutput_file = f"/home/{url.split('/')[-1]}"
+        urllib.request.urlretrieve(url, Loutput_file)
+        print(f"{tn} Saved as: {Loutput_file}")
+    
+
+# ^^ Download Latest NH.py file ^^
 
 def tt(text, delay):
     for char in text:
@@ -494,6 +522,7 @@ if inta == "ios":
 elif inta == "windows":
     print(f"Running NyaHax {version} on Windows.")
     onWindows = True
+    usrlgn = os.getlogin()
 else:
     print(f"Running Nyahax {version} on Linux.")
 
@@ -587,5 +616,7 @@ while True:
         listrepos()
     elif flag in ["-rr", "repostrepos"]:
         repostrepos(context)
+    elif flag in ["-dn", "downloadnew", "-dwnh"]:   
+        dnhpy()
     else:
         print(f"{tn} command not found... Try typing -h")
