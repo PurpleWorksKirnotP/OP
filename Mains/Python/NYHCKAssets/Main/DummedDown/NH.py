@@ -3,6 +3,27 @@ encoding="utf-8"
 import requests
 import sys
 import os
+import urllib.request
+import os
+import ctypes
+
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except Exception:
+        return False
+
+def run_as_admin():
+    # Re-launch the script with admin rights, triggering the UAC prompt
+    ctypes.windll.shell32.ShellExecuteW(
+        None, "runas", sys.executable, " ".join(sys.argv), None, 1
+    )
+
+if not is_admin():
+    run_as_admin()
+    sys.exit()
+else:
+    print(f"[DEBUG]: running as administrator")
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -33,6 +54,7 @@ Go crrrrazy~! Nya~!
 
 - h = prints this message 
 - exit, e, -e = Exits NH
+- download <savefilenameas> = downloads the latest version of NH
 
 = Info -
 
@@ -175,6 +197,20 @@ def tt(text, delay=0.01):
     print()
 
 # Type writter func ^^
+
+def dwnlod(url):
+    folder = ""
+    if onWindows == True:
+        folder = "C:\\Program Files\\_nhprogfiles"
+    else:
+        folder = "/home/NHprogfiles"
+    os.makedirs(folder, exist_ok=True)
+    filename = os.path.join(folder, "NH.py")
+
+    urllib.request.urlretrieve(url, filename)
+    print(f"{tn} downloaded NH.py | saved to {folder}")
+
+# Download NH ^^
 
 def pming(message, program2inj):
     if Sij == True and malb == True:
@@ -642,5 +678,7 @@ while True:
         dnhpy()
     elif flag in ["-pmsg", "pegasusmessaging"]:
         pming(context, context2)
+    elif flag in ["-download", "download"]:
+        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py")    
     else:
         print(f"{tn} command not found... Try typing -h")
