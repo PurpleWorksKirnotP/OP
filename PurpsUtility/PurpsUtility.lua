@@ -18,5 +18,5 @@ Home:addButton("Inf Yield", function()
 end)
 
 Home:addButton("Aimlock (Universal)", function()  
-    loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/Aimlock.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/Aimlock.lua"))()
 end)

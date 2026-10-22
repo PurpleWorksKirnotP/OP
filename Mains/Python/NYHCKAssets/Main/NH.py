@@ -1,7 +1,14 @@
-encoding="utf-8"
+import sys
+
+# This tool drives the Windows API (UAC elevation), so it cannot run anywhere else.
+if sys.platform != "win32":
+    print("---[NyaHax]: NyaHax only runs on Windows.")
+    print(f"---[NyaHax]: Detected platform: {sys.platform}")
+    print("---[NyaHax]: On Linux, macOS or iSH use the trimmed-down build instead:")
+    print("---[NyaHax]:   Mains/Python/NYHCKAssets/Main/DummedDown/NH.py")
+    sys.exit(1)
 
 import requests
-import sys
 import urllib.request
 import os
 import ctypes
@@ -46,6 +53,9 @@ h = """
 Go crrrrazy~! Nya~!
 
 ============================================================================
+
+NOTE: Every command below is a simulation. Nothing is attacked, infected,
+scanned or deleted - the output is generated for demonstration purposes only.
 
 = Common -
 
@@ -180,17 +190,13 @@ def tt(text, delay=0.01):
 
 # Type-writer func ^^
 
-def dwnlod(url):
-    folder = ""
-    if onWindows == True:
-        folder = "C:\\Program Files\\_nhprogfiles"
-    else:
-        folder = "/home/NHprogfiles"
+def dwnlod(url, filename=None):
+    folder = r"C:\Program Files\_nhprogfiles"
     os.makedirs(folder, exist_ok=True)
-    filename = os.path.join(folder, "NH.py")
+    target = os.path.join(folder, filename or "NH.py")
 
-    urllib.request.urlretrieve(url, filename)
-    print(f"{tn} downloaded NH.py | saved to {folder}")
+    urllib.request.urlretrieve(url, target)
+    print(f"{tn} downloaded {os.path.basename(target)} | saved to {target}")
 
 # Download NH ^^
 
@@ -483,7 +489,7 @@ def SOL(ip, host):
         print("")
         print(f"{tn} starting with {bndn} devices...")
         for i in range(1,1001):
-            print(f"{tn} {bndn} Requests made to {ip}! | Response: {random.choice(["Good", "Med", "BAD"])} | Connection: {random.choice(["Good", "Med", "BAD"])}")
+            print(f"{tn} {bndn} Requests made to {ip}! | Response: {random.choice(['Good', 'Med', 'BAD'])} | Connection: {random.choice(['Good', 'Med', 'BAD'])}")
             time.sleep(0.01)
         print(f"{tn} {bndn} Requests made to {ip} | Response: SERVERFROZEN | Connection: CANNOTCONNECT2SERVER")
         time.sleep(1)
@@ -608,7 +614,7 @@ def IPInj(Fip):
         print(f"{tn} success! Flashing payload host OS on router/IP...")
         time.sleep(1)
         for i in range(1, 501):
-            print(f"{tn} FROM HOST PC GENERATED FILE: {random.choice(["Stealer", "Injecter", "Spyware", "Wormware", "RAT"])}{random.randint(1000,9999)}.{random.choice(["exe", "dat", "json","txt", "tar.gz", "snap", "NYAHC", "sqlite"])} TO {Fip}")
+            print(f"{tn} FROM HOST PC GENERATED FILE: {random.choice(['Stealer', 'Injecter', 'Spyware', 'Wormware', 'RAT'])}{random.randint(1000,9999)}.{random.choice(['exe', 'dat', 'json', 'txt', 'tar.gz', 'snap', 'NYAHC', 'sqlite'])} TO {Fip}")
             time.sleep(0.01)
         add_entry(ips, Fip)
         print(ips)
@@ -723,12 +729,12 @@ while True:
         if onIos == True:
             DbIOS()
         else:
-            print(f"{tn} You're on windows. do -dbwin instead OR -dball for a general debloat if on Linux.")
+            print(f"{tn} -dbios only works on iOS. Use -dbwin on Windows, or -dball for a general debloat.")
     elif flag in ["-dbwin", "-dbwindows", "debloatwindows"]:
         if onWindows == True:
             dbwin()
         else:
-            print(f"You're on IOS. do -dbios instead OR -dball for a general debloat if on linux.")
+            print(f"{tn} -dbwin only works on Windows. Use -dbios on iOS, or -dball for a general debloat.")
     elif flag in ["-dball", "-dbgen", "gendebloat", "generaldebloat", "-allosdebloat"]:
         dbALL()
     elif flag in ["whatishacking"]:
@@ -744,6 +750,6 @@ while True:
     elif flag in ["-pmsg", "pegasusmessaging"]:
         pming(context, context2)
     elif flag in ["-download", "download"]:
-        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py")
+        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py", context)
     else:
         print(f"{tn} command not found... Try typing -h")

@@ -1,0 +1,30 @@
+# --- Python -------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# --- PyInstaller build output -------------------------------------------
+# KSPORe.spec is tracked on purpose: it is the build recipe. The artefacts it
+# produces (build/ and dist/) are regenerated locally, never committed.
+build/
+dist/
+*.manifest
+
+# --- Editors / OS -------------------------------------------------------
+.vscode/settings.json
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Local scratch ------------------------------------------------------
+*.log

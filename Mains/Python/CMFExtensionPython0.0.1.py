@@ -6,7 +6,12 @@ import datetime
 import time
 import os
 import random
-username = os.getlogin()
+# os.getlogin() raises OSError when there is no controlling terminal (which is
+# exactly how this file is meant to be run: `irm ... | python -`).
+try:
+    username = os.getlogin()
+except OSError:
+    username = os.environ.get("USERNAME") or os.environ.get("USER") or "user"
 userfolder = os.path.expanduser('~')
 art = """
      ___   ________  _________   _______  _______________   _______ ________  _   __   ______  __   ___   ____                    _                ____   ____   ___   

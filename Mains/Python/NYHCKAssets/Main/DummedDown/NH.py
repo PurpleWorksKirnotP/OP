@@ -1,20 +1,23 @@
-encoding="utf-8"
-
-import requests
 import sys
 import os
+import requests
 import urllib.request
-import os
-import ctypes
+
+IS_WINDOWS = sys.platform == "win32"
 
 def is_admin():
+    if not IS_WINDOWS:
+        # UAC and ctypes.windll do not exist outside Windows.
+        return True
     try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
+        import ctypes
+        return bool(ctypes.windll.shell32.IsUserAnAdmin())
     except Exception:
         return False
 
 def run_as_admin():
     # Re-launch the script with admin rights, triggering the UAC prompt
+    import ctypes
     ctypes.windll.shell32.ShellExecuteW(
         None, "runas", sys.executable, " ".join(sys.argv), None, 1
     )
@@ -22,8 +25,8 @@ def run_as_admin():
 if not is_admin():
     run_as_admin()
     sys.exit()
-else:
-    print(f"[DEBUG]: running as administrator")
+elif IS_WINDOWS:
+    print("[DEBUG]: running as administrator")
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -49,6 +52,9 @@ h = """
 Go crrrrazy~! Nya~!
 
 ============================================================================
+
+NOTE: Every command below is a simulation. Nothing is attacked, infected,
+scanned or deleted - the output is generated for demonstration purposes only.
 
 = Common -
 
@@ -172,19 +178,9 @@ def dnhpy():
 
     url = "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py"
 
-    if onWindows == True:
-        Woutput_file = f"C:\\users\\{usrlgn}\\downloads\\{url.split('/')[-1]}"
-        urllib.request.urlretrieve(url, Woutput_file)
-        print(f"{tn} Saved as: {Woutput_file} saved in downloads folder.")
-    elif onIos == True:
-        Ioutput_file = f"/home/{url.split('/')[-1]}"
-        urllib.request.urlretrieve(url, Ioutput_file)
-        print(f"{tn} Saved as: {Ioutput_file} in /home do cd /home to access it.")
-    else:
-        print(f"{tn} We're assuming you're on Linux. Saving to /home/{url.split('/')[-1]}...")
-        Loutput_file = f"/home/{url.split('/')[-1]}"
-        urllib.request.urlretrieve(url, Loutput_file)
-        print(f"{tn} Saved as: {Loutput_file}")
+    output_file = os.path.join(os.path.expanduser("~"), url.split("/")[-1])
+    urllib.request.urlretrieve(url, output_file)
+    print(f"{tn} Saved as: {output_file}")
     
 
 # ^^ Download Latest NH.py file ^^
@@ -198,17 +194,16 @@ def tt(text, delay=0.01):
 
 # Type writter func ^^
 
-def dwnlod(url):
-    folder = ""
-    if onWindows == True:
-        folder = "C:\\Program Files\\_nhprogfiles"
+def dwnlod(url, filename=None):
+    if IS_WINDOWS:
+        folder = r"C:\Program Files\_nhprogfiles"
     else:
-        folder = "/home/NHprogfiles"
+        folder = os.path.join(os.path.expanduser("~"), "NHprogfiles")
     os.makedirs(folder, exist_ok=True)
-    filename = os.path.join(folder, "NH.py")
+    target = os.path.join(folder, filename or "NH.py")
 
-    urllib.request.urlretrieve(url, filename)
-    print(f"{tn} downloaded NH.py | saved to {folder}")
+    urllib.request.urlretrieve(url, target)
+    print(f"{tn} downloaded {os.path.basename(target)} | saved to {target}")
 
 # Download NH ^^
 
@@ -580,7 +575,6 @@ if inta == "ios":
 elif inta == "windows":
     print(f"Running NyaHax {version} on Windows.")
     onWindows = True
-    usrlgn = os.getlogin()
 else:
     print(f"Running Nyahax {version} on Linux.")
 
@@ -679,6 +673,6 @@ while True:
     elif flag in ["-pmsg", "pegasusmessaging"]:
         pming(context, context2)
     elif flag in ["-download", "download"]:
-        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py")    
+        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py", context)    
     else:
         print(f"{tn} command not found... Try typing -h")

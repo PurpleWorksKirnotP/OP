@@ -5,7 +5,7 @@ Still a WIP soooo don't stoop in here for too long.
 Hekmatyar Script (dirty money)
 
 ```
-loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsScripts/Hekmatyar(Dirty%20Money)/LaunderedMoney.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsScripts/Hekmatyar(Dirty%20Money)/LaunderedMoney.lua"))()
 ```
 
 ---

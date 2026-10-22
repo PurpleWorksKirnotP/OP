@@ -1,6 +1,6 @@
 print("DEPRECATED CODE!!! Copied New Script To Clipboard.")
 
-setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()")setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()")
+setclipboard('loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()')
 
 --[[local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer

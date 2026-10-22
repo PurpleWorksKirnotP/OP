@@ -59,7 +59,7 @@ local ScriptsSection = ExtrasTab:section({name = "Scripts", side = "left", size 
 -- Bind UI Controls to Settings
 
 ScriptsSection:button({name = "PurpsUtils", callback = function()
-    loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/PurpsUtility.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/PurpsUtility.lua"))()
 end})
 
 AimSection:toggle({name = "Sticky Aimlock", def = TixSettings.Sticky, callback = function(Boolean)
