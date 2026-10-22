@@ -97,8 +97,21 @@ local Button3 = TeleportsX:CreateButton({
       local marker = Camera:FindFirstChild("FuseboxMarker")
 
       if marker then
-          local targetCFrame = marker:IsA("Model") and (marker.PrimaryPart and marker.PrimaryPart.CFrame or marker:FindFirstChildWhichIsA("BasePart").CFrame) or (marker:IsA("BasePart") and marker.CFrame)
-          
+          local targetCFrame = nil
+
+          if marker:IsA("BasePart") then
+              targetCFrame = marker.CFrame
+          elseif marker:IsA("Model") then
+              if marker.PrimaryPart then
+                  targetCFrame = marker.PrimaryPart.CFrame
+              else
+                  local markerPart = marker:FindFirstChildWhichIsA("BasePart")
+                  if markerPart then
+                      targetCFrame = markerPart.CFrame
+                  end
+              end
+          end
+
           if targetCFrame then
               Character:PivotTo(targetCFrame)
           else

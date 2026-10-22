@@ -120,11 +120,14 @@ helpcommands = """
 ==================
 Operation Router | A.K.A. Kiryuw's stupid panel
 ==================
+NOTE: Every command below is simulated - routes, payloads and "kills" only
+print text. Nothing is sent, scanned or terminated on any network.
+==================
 Commands:
 
   -r <target>           route operations to <target>
   -ddos <dns> <target>  DDoS payload (hosted on <dns>, hitting <target>)
-  -infect <dns> <wifi>  device-infection payload (hosted on <dns>, targeting <wifi>)
+  -infect <dns> <wifi> <name>  device-infection payload (hosted on <dns>, targeting <wifi>)
   -k <target>           kill process on <target>  (must be a routed target)
   -k all                kill ALL routed processes
   -l / list             list all currently routed targets
@@ -181,11 +184,11 @@ while True:
             target = parts[1]
             FakeDDOS(dns_provider, target)
         else:
-            print(f"{tn} Usage: -d <dns_provider> <target_website>")
-            print(f"{tn} Example: -d 1.1.1.1 example.com")
+            print(f"{tn} Usage: -ddos <dns_provider> <target_website>")
+            print(f"{tn} Example: -ddos 1.1.1.1 example.com")
     elif flag == "-infect":
         parts = arg.split()
-        if len(parts) >= 2:
+        if len(parts) >= 3:
             dns_provider = parts[0]
             wifiip = parts[1]
             target_wifi = parts[2]

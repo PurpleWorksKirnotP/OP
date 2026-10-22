@@ -1,0 +1,19 @@
+# Runtime dependencies for the Python tools in this repository.
+#
+# Used by:
+#   Mains/Python/NYHCKAssets/Main/NH.py
+#   Mains/Python/NYHCKAssets/Main/DummedDown/NH.py
+#   Mains/Python/Sender.py
+#
+# Install:
+#   python -m pip install -r requirements.txt
+#
+# Nothing else in the repo needs a third-party package; the Lua scripts run in
+# a Roblox executor and the PowerShell scripts use only built-in cmdlets.
+
+requests>=2.31,<3
+
+# Build-time only (rebuilds Mains/Python/dist/KSPORe.exe from KSPORe.spec,
+# which is not committed - see Mains/CmdPurps.md):
+#   python -m pip install "pyinstaller>=6,<7"
+#   cd Mains/Python && pyinstaller KSPORe.spec

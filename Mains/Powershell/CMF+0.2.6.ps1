@@ -7,22 +7,15 @@ Write-Host @"
  |____|       \/                  \/ /_____/    \/     \/     \/     \/   |____| 
 "@ -ForegroundColor Magenta
 
-$startupPath = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\Startup\CMFEXTENSION.lnk"
-$scriptPath = (Resolve-Path $MyInvocation.MyCommand.Path).Path
+# NOTE: this script does NOT install itself into the Startup folder any more.
+# It used to create a shortcut there, which made it run on every single login.
 
-if (-not (Test-Path $startupPath)) {
-    $WScriptShell = New-Object -ComObject WScript.Shell
-    $shortcut = $WScriptShell.CreateShortcut($startupPath)
-    $shortcut.TargetPath = "powershell.exe"
-    $shortcut.Arguments = "-ExecutionPolicy Bypass -File `"$scriptPath`""
-    $shortcut.WorkingDirectory = Split-Path $scriptPath
-    $shortcut.Save()
-}
+Write-Host "NOTE: CMF is a simulation - no cookies are read, stolen or uploaded." -ForegroundColor Yellow
 
 start-sleep -Milliseconds 500
 
 Write-Host "" -ForegroundColor Magenta
-Write-Host "Running 0.2.7 from https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains%20/CMF.ps1" -ForegroundColor Blue
+Write-Host "Running 0.2.6 from https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/Powershell/CMF%2B0.2.6.ps1" -ForegroundColor Blue
 Write-Host "" -ForegroundColor Magenta
 Write-Host "Finding Browser..." -ForegroundColor Magenta
 start-sleep -Seconds 5

@@ -9,4 +9,9 @@ Note: Scripts in "Borrowed(STOLEN)Scripts" were not originally authored
 by Purps and are not covered under this license. Refer to original sources
 for their respective terms.
 
+Note: `Misc/MinecraftHax/PurpsClient0.0.1.jar` is the Wurst Client, a
+third-party project licensed under the GNU GPLv3. It is not covered by this
+license: it keeps its own licence (shipped inside the jar) and its source is
+the upstream repository linked in `Misc/MinecraftHax/README.md`.
+
 No warranty is provided. Use at your own risk.

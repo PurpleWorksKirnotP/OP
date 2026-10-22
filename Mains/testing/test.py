@@ -1,7 +1,9 @@
-encoding="utf-8"
-
+import sys
 import time
 import random
+
+# The banner uses box-drawing characters; make sure they print on Windows too.
+sys.stdout.reconfigure(encoding="utf-8")
 
 tn = "---[NyaHax]:"
 
@@ -106,7 +108,7 @@ def IPInj(Fip):
         print(f"{tn} success! Flashing payload host OS on router/IP...")
         time.sleep(1)
         for i in range(1, 501):
-            print(f"{tn} FROM HOST PC GENERATED FILE: {random.choice(["Stealer", "Injecter", "Spyware", "Wormware", "RAT"])}{random.randint(1000,9999)}.{random.choice(["exe", "dat", "json","txt", "tar.gz", "snap", "NYAHC", "sqlite"])} TO {Fip}")
+            print(f"{tn} FROM HOST PC GENERATED FILE: {random.choice(['Stealer', 'Injecter', 'Spyware', 'Wormware', 'RAT'])}{random.randint(1000,9999)}.{random.choice(['exe', 'dat', 'json', 'txt', 'tar.gz', 'snap', 'NYAHC', 'sqlite'])} TO {Fip}")
             time.sleep(0.01)
         add_entry(ips, Fip)
         print(ips)
@@ -137,9 +139,6 @@ def lc():
 
 print(h)
 
-testa = 12
-testb = 13
-
 while True:
     uwu = input(f"{tn} ")
 
@@ -157,7 +156,7 @@ while True:
         break
     elif flag in ["-lc", "localhost"]:
         lc()
-    elif flag in ["-ippinj", "-ipinj", "-ipinj", "-ipj", "ipinject"]:
+    elif flag in ["-ippinj", "-ipinj", "-ipj", "ipinject"]:
         IPInj(context)
     elif flag in ["-l", "-list"]:
         listinfects()

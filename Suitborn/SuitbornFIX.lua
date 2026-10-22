@@ -85,5 +85,6 @@ end
 task.wait(0.1)
 
 if Config.AutoRejoin == true then
-    TeleportService:Teleport(game.PlaceId, Player)
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    TeleportService:Teleport(game.PlaceId, LocalPlayer)
 end

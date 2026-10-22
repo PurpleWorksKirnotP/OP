@@ -27,7 +27,13 @@ Home:addToggle("Auto-Farm Souls (IN BLOODBATH)", function(value)
     farming = value
     if farming then
         task.spawn(function()
-            local soulsFolder = workspace.Map.Souls
+            local map = workspace:FindFirstChild("Map")
+            local soulsFolder = map and map:FindFirstChild("Souls")
+            if not soulsFolder then
+                warn("Waterbath: workspace.Map.Souls not found - Auto-Farm Souls disabled.")
+                farming = false
+                return
+            end
             local player = game:GetService("Players").LocalPlayer
             
             while farming do
@@ -61,7 +67,8 @@ NewFeatures:addButton("ESCAPE!!!", function()
     local player = game:GetService("Players").LocalPlayer
     local character = player.Character
     local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-    local escapeDoor = workspace.Map:FindFirstChild("EscapeDoor")
+    local map = workspace:FindFirstChild("Map")
+    local escapeDoor = map and map:FindFirstChild("EscapeDoor")
     if rootPart and escapeDoor then
         if escapeDoor:IsA("BasePart") then
             rootPart.CFrame = escapeDoor.CFrame
@@ -76,7 +83,13 @@ NewFeatures:addToggle("Auto-Farm Katanas", function(value)
     farmingKatanas = value
     if farmingKatanas then
         task.spawn(function()
-            local katanasFolder = workspace.Map:FindFirstChild("Katanas")
+            local map = workspace:FindFirstChild("Map")
+            local katanasFolder = map and map:FindFirstChild("Katanas")
+            if not katanasFolder then
+                warn("Waterbath: workspace.Map.Katanas not found - Auto-Farm Katanas disabled.")
+                farmingKatanas = false
+                return
+            end
             local player = game:GetService("Players").LocalPlayer
             
             while farmingKatanas and katanasFolder do

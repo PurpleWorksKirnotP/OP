@@ -117,20 +117,6 @@ def FakeInfectDevices(dnsprovide, wifiip, targetwifi):
         time.sleep(0.01)
     print(f"{tn} Payload Complete! All surrounding devices infected.")
 
-def Botnetting(ipprovide, targetdevicesnum):
-    if ipprovide not in routing_table:
-            print(f"{tn} ERROR: Target '{ipprovide}' has no active route.")
-            print(f"{tn} Use '-r {ipprovide}' to route it first, or '-l' to view active routes.")
-            return
-    info = routing_table[ipprovide]
-    print(f"{tn} ========================")
-    print(f"{tn} Searching for infected devices...")
-    time.sleep(0.5)
-    print(f"{tn} Devices found!")
-    for i in range(1, 51):
-        print(f"{tn} Infecting device {i} of {targetdevicesnum}...")
-        time.sleep(0.1)
-
 art = """
 __________                           
 \______   \__ _______________  ______
@@ -143,6 +129,9 @@ __________
 helpcommands = """
 ==================
 Operation Router | A.K.A. Kiryuw's stupid panel
+==================
+NOTE: Every command below is simulated - routes, payloads and "kills" only
+print text. Nothing is sent, scanned or terminated on any network.
 ==================
 Commands:
 
@@ -215,11 +204,11 @@ while True:
             target = parts[1]
             FakeDDOS(dns_provider, target)
         else:
-            print(f"{tn} Usage: -d <dns_provider> <target_website>")
-            print(f"{tn} Example: -d 1.1.1.1 example.com")
+            print(f"{tn} Usage: -ddos <dns_provider> <target_website>")
+            print(f"{tn} Example: -ddos 1.1.1.1 example.com")
     elif flag == "-infect":
         parts = arg.split()
-        if len(parts) >= 2:
+        if len(parts) >= 3:
             dns_provider = parts[0]
             wifiip = parts[1]
             target_wifi = parts[2]

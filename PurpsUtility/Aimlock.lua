@@ -2,7 +2,7 @@ local notif = loadstring(game:HttpGet("https://raw.githubusercontent.com/DozeIsO
 
 notif:Notification("Made by Purps","This is outdated! New Script copied to clipboard","GothamSemibold","Gotham",2)
 
-setclipboard("loadstring(HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockV2.lua"))()")
+setclipboard('loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/AimlockV2.lua"))()')
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")

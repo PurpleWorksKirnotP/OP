@@ -24,8 +24,15 @@ def send_to_discord(webhook_url: str, message: str, username: str = None) -> boo
 
 
 def main():
-    # Get webhook URL (from env var or prompt)
-    webhook_url = "https://discord.com/api/webhooks/1516428299306401893/A4e1dSRCatc--8VAmh4EoYY1IfUdhkJDR5MKSskTT_xrgpdzNNGyjIg5AH7YZ_zXtl9L"
+    # Get webhook URL (from env var or prompt) - never hard-code it in the repo
+    webhook_url = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+
+    if not webhook_url:
+        webhook_url = input("Discord webhook URL: ").strip()
+
+    if not webhook_url.startswith("https://discord.com/api/webhooks/"):
+        print("That does not look like a Discord webhook URL. Exiting.")
+        sys.exit(1)
 
     # Get the message from the user
     print()
@@ -41,7 +48,7 @@ def main():
 
     # Send it
     print("\nSending...")
-    send_to_discord(webhook_url, message, username)
+    send_to_discord(webhook_url, message)
 
 
 if __name__ == "__main__":

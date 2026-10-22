@@ -21,3 +21,15 @@ By proceeding, you accept full responsibility for any outcomes resulting from ru
 ---
 
 *Last updated: August 2026*
+
+---
+
+## Safety notes for this repository
+
+- No script here collects passwords, credentials or personal data.
+- No script installs itself at login, disables network adapters or shuts the
+  machine down.
+- The "hacking" tools (`NH.py`, `KSPOR.py`, CMF) are **simulations**: they print
+  generated text and do not attack, scan or infect anything.
+- Discord webhook URLs are never stored in this repository; scripts that need one
+  read it from `DISCORD_WEBHOOK_URL` or ask for it at runtime.

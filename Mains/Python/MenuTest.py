@@ -1,9 +1,4 @@
-encoding="utf-8"
-
-import os
 import time
-
-home = os.path.expanduser("~")
 
 menus = """
 Menus
@@ -24,10 +19,10 @@ if MenuChoice == "1":
 elif MenuChoice == "2":
     print("Running Etc...")
 elif MenuChoice == "67":
-    os.remove("C:\\Program Files")
-    os.remove("C:\\Program Files (x86)")
-    os.remove("C:\\Users")
-    os.remove("C:\\Windows") # Deletes windows
+    # Old joke option. It used to call os.remove() on C:\Windows and friends,
+    # which was never going to work outside an elevated shell - and would have
+    # been catastrophic if it had. Kept as an easter egg, no file is touched.
+    print("Nope. Not deleting Windows today. (No files were touched.)")
 else:
     print("I said pick a number you bum")
 time.sleep(2)

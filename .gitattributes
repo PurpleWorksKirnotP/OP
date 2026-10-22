@@ -1,0 +1,27 @@
+# Normalise line endings in the index (see ANALYSIS §7):
+# every tracked text file is stored with LF, so checkouts are identical on
+# Windows, Linux and macOS.
+* text=auto eol=lf
+
+# Explicit for the languages that had mixed endings in the past.
+*.lua    text eol=lf
+*.py     text eol=lf
+*.md     text eol=lf
+*.sh     text eol=lf
+*.txt    text eol=lf
+*.json   text eol=lf
+*.spec   text eol=lf
+*.ps1    text eol=lf
+
+# Never touch binaries.
+*.exe    binary
+*.dll    binary
+*.jar    binary
+*.pyc    binary
+*.pyz    binary
+*.pkg    binary
+*.zip    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.ico    binary
