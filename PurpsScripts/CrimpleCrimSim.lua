@@ -10,6 +10,12 @@ local CONFIG = {
 	ForeignRefreshInterval = 10, -- seconds between recounts of the game's highlights
 	MaxSelections = 60, -- cap for the SelectionBox fallback
 
+	-- NPC ESP only shows while you are inside this distance band (studs).
+	-- 0 / math.huge mean "no limit" on either end, so a plain radius is
+	-- Min = 0, Max = 500 and a plain "farther than" is Min = 100, Max = math.huge.
+	NpcMinDistance = 0,
+	NpcMaxDistance = 500,
+
 	ReorderDistance = 2, -- studs the camera must move before re-prioritising
 	BudgetUpdateRate = 0.3, -- seconds between priority / budget updates
 	ModeRefreshInterval = 5, -- re-check "is this model all transparent?" every N s
@@ -51,6 +57,8 @@ local GROUP_CONFIGS = {
 		maxVisuals = 10,
 		priority = 0,
 		enabled = true,
+		minDistance = CONFIG.NpcMinDistance, -- only show NPCs farther than this
+		maxDistance = CONFIG.NpcMaxDistance, -- and closer than this
 	},
 	{
 		key = "guard",
@@ -94,6 +102,9 @@ type Group = {
 	maxVisuals: number,
 	priority: number, -- 0 = first claim on the 31 render slots
 	enabled: boolean,
+	rangeKey: string?, -- CONFIG key prefix so the range can be live-edited
+	minDistance: number,
+	maxDistance: number,
 	folder: Instance?,
 	records: { [Instance]: Record },
 	visuals: number,
@@ -127,6 +138,9 @@ for _, config in ipairs(GROUP_CONFIGS) do
 		maxVisuals = config.maxVisuals or CONFIG.MaxHighlights,
 		priority = config.priority or 1,
 		enabled = config.enabled ~= false,
+		rangeKey = config.rangeKey,
+		minDistance = config.minDistance or 0,
+		maxDistance = config.maxDistance or math.huge,
 		folder = nil,
 		records = {},
 		visuals = 0,
@@ -498,6 +512,17 @@ local function validateVisuals()
 	end
 end
 
+-- Distance gate: is this object inside its category's show range?
+local function inRange(group: Group, distance: number): boolean
+	if distance < group.minDistance then
+		return false
+	end
+	if distance > group.maxDistance then
+		return false
+	end
+	return true
+end
+
 local function updateBudget()
 	validateVisuals()
 	refreshCounts()
@@ -547,10 +572,19 @@ local function updateBudget()
 			end
 			record.dirty = false
 
+			local distance = (pivotOf(instance) - cameraPosition).Magnitude
+
+			-- Outside the category's band (e.g. an NPC 600 studs away) it is
+			-- still tracked, but it does not compete for a render slot.
+			if not inRange(group, distance) then
+				dropVisual(group, record) -- no visual, but the record stays tracked
+				continue
+			end
+
 			table.insert(entries, {
 				group = group,
 				record = record,
-				distance = (pivotOf(instance) - cameraPosition).Magnitude,
+				distance = distance,
 			})
 		end
 	end
@@ -806,13 +840,23 @@ local function statusLine(): string
 	for _, group in ipairs(GROUPS) do
 		table.insert(parts, string.format("%s %s", group.short, if group.enabled then "on" else "off"))
 	end
+	local npcGroup = groupsByKey.npc
+	local npcRange = if npcGroup
+		then string.format(
+			"NPC range %s-%s",
+			if npcGroup.minDistance > 0 then tostring(math.floor(npcGroup.minDistance)) else "0",
+			if npcGroup.maxDistance < math.huge then tostring(math.floor(npcGroup.maxDistance)) else "inf"
+		)
+		else ""
+
 	return string.format(
-		"%d tracked | %d/%d highlight slots | %d outlines | %s",
+		"%d tracked | %d/%d highlight slots | %d outlines | %s | %s",
 		tracked,
 		activeHighlights,
 		CONFIG.GlobalVisualCap,
 		activeSelections,
-		table.concat(parts, ", ")
+		table.concat(parts, ", "),
+		npcRange
 	)
 end
 
@@ -1007,6 +1051,42 @@ BudgetSection:Slider({
 			end
 		end
 		dirtyFlag = true
+	end,
+})
+
+-- ---- NPC range -------------------------------------------------------
+BudgetSection:Slider({
+	Text = "NPC ESP max distance",
+	Default = CONFIG.NpcMaxDistance == math.huge and 500 or CONFIG.NpcMaxDistance,
+	Minimum = 0,
+	Maximum = 2000,
+	Callback = function(value)
+		local npcGroup = groupsByKey.npc
+		if not npcGroup then
+			return
+		end
+		local maxDistance = math.floor(value)
+		npcGroup.maxDistance = if maxDistance <= 0 then math.huge else maxDistance
+		CONFIG.NpcMaxDistance = npcGroup.maxDistance
+		dirtyFlag = true
+		updateBudget() -- apply it right away, no waiting for the next pass
+	end,
+})
+
+BudgetSection:Slider({
+	Text = "NPC ESP min distance",
+	Default = CONFIG.NpcMinDistance,
+	Minimum = 0,
+	Maximum = 500,
+	Callback = function(value)
+		local npcGroup = groupsByKey.npc
+		if not npcGroup then
+			return
+		end
+		npcGroup.minDistance = math.floor(value)
+		CONFIG.NpcMinDistance = npcGroup.minDistance
+		dirtyFlag = true
+		updateBudget()
 	end,
 })
 
