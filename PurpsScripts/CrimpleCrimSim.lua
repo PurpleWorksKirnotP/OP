@@ -14,7 +14,7 @@ local CONFIG = {
 	-- 0 / math.huge mean "no limit" on either end, so a plain radius is
 	-- Min = 0, Max = 500 and a plain "farther than" is Min = 100, Max = math.huge.
 	NpcMinDistance = 0,
-	NpcMaxDistance = 500,
+	NpcMaxDistance = 250,
 
 	ReorderDistance = 2, -- studs the camera must move before re-prioritising
 	BudgetUpdateRate = 0.3, -- seconds between priority / budget updates
