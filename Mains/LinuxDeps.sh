@@ -26,7 +26,7 @@ echo "Checking if prerequisites are already installed.."
 if command -v curl > /dev/null && command -v pwsh > /dev/null && command -v python3 > /dev/null && command -v pip3 > /dev/null; then
     echo "All prerequisites are already installed. Exiting."
     echo "Powershell installed successfully! You may now run powershell by typing 'pwsh' in your terminal."
-    echo "You can also visit: https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/CmdPurps.md to run any powershell script (MAY NOT WORK DUE TO LACK OF LINUX SUPPORT.)"
+    echo "You can also visit: https://github.com/PurpleWorksKirnotP/PurpleScripts/blob/main/Mains/CmdPurps.md to run any powershell script (MAY NOT WORK DUE TO LACK OF LINUX SUPPORT.)"
     echo "I will be working on Linux support, on the meantime, you can use the powershell script on windows or better yet, run it using Wine."
     sleep 0.5
     echo "Other dependencies are also installed already, if you encounter any issues, report them to me or dm me on discord: kirturneedpurp"
@@ -73,7 +73,7 @@ sudo apt install -y python3 python3-pip python3-venv
 sleep 0.5
 
 echo "Powershell installed successfully! You may now run powershell by typing 'pwsh' in your terminal."
-echo "You can also visit: https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/CmdPurps.md to run any powershell script (MAY NOT WORK DUE TO LACK OF LINUX SUPPORT.)"
+echo "You can also visit: https://github.com/PurpleWorksKirnotP/PurpleScripts/blob/main/Mains/CmdPurps.md to run any powershell script (MAY NOT WORK DUE TO LACK OF LINUX SUPPORT.)"
 echo "I will be working on Linux support, on the meantime, you can use the powershell script on windows or better yet, run it using Wine."
 
 echo "Other dependencies are also installed already, if you encounter any issues, report them to me or dm me on discord: kirturneedpurp"

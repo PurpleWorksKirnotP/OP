@@ -59,26 +59,26 @@ end
 
 
 if Config.TeamEscape == true and Config.OneManEscape == true then -- TeamEscape + OneManEscape set to true
-    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/EscapeEarly.lua"))()
+    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/EscapeEarly.lua"))()
     EscapeEarly()
     notif:Notification("TeamEscape","Gojira must be awake first, else your teammates will have to wait for him to awaken to escape.","GothamSemibold","Gotham",2)
 
 
     task.wait(1)
 
-    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Gojira.lua"))()
+    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Gojira.lua"))()
     OneManEscapah()
 elseif Config.OneManEscape == true and Config.TeamEscape == false then -- OneManEscape set to true and TeamEscape set to false
     notif:Notification("One man Escape","Will automatically send you to the lobby!","GothamSemibold","Gotham",2)
 
-    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Gojira.lua"))()
+    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Gojira.lua"))()
     OneManEscapah()
 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/PurpsUtility/PurpsUtility.lua"))() -- Opens up purps utils just incase if anything fails or needs a rejoin.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/PurpsUtility/PurpsUtility.lua"))() -- Opens up purps utils just incase if anything fails or needs a rejoin.
 elseif Config.TeamEscape == true and Config.OneManEscape == false then -- Team Escape set to true and One Man Escape set to be false
     notif:Notification("TeamEscape","Gojira must be awake first, else your teammates will have to wait for him to awaken to escape.","GothamSemibold","Gotham",5)
 
-    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/EscapeEarly.lua"))()
+    --loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/EscapeEarly.lua"))()
     EscapeEarly()
 end
 
