@@ -15,7 +15,7 @@ Write-Host "NOTE: CMF is a simulation - no cookies are read, stolen or uploaded.
 start-sleep -Milliseconds 500
 
 Write-Host "" -ForegroundColor Magenta
-Write-Host "Running 0.2.6 from https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/Powershell/CMF%2B0.2.6.ps1" -ForegroundColor Blue
+Write-Host "Running 0.2.6 from https://github.com/PurpleWorksKirnotP/PurpleScripts/blob/main/Mains/Powershell/CMF%2B0.2.6.ps1" -ForegroundColor Blue
 Write-Host "" -ForegroundColor Magenta
 Write-Host "Finding Browser..." -ForegroundColor Magenta
 start-sleep -Seconds 5

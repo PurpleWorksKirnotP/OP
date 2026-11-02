@@ -24,13 +24,13 @@ the whole feature.
 Windows:
 
 ```
-python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py').read().decode('utf-8'))"
+python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py').read().decode('utf-8'))"
 ```
 
 Linux / macOS / iSH (dummed down):
 
 ```
-python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py').read().decode('utf-8'))"
+python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py').read().decode('utf-8'))"
 ```
 
 REQUIREMENTS: Requests

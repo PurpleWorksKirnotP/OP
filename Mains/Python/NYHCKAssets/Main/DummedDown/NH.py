@@ -31,7 +31,7 @@ elif IS_WINDOWS:
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
+    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
 except Exception as e:
     version = f"OFFLINE..."
     print(f"Offline mode, using fallback: {e}")
@@ -176,7 +176,7 @@ ips = {}
 def dnhpy():
     import urllib.request
 
-    url = "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py"
+    url = "https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py"
 
     output_file = os.path.join(os.path.expanduser("~"), url.split("/")[-1])
     urllib.request.urlretrieve(url, output_file)
@@ -673,6 +673,6 @@ while True:
     elif flag in ["-pmsg", "pegasusmessaging"]:
         pming(context, context2)
     elif flag in ["-download", "download"]:
-        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py", context)    
+        dwnlod("https://github.com/PurpleWorksKirnotP/PurpleScripts/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/DummedDown/NH.py", context)    
     else:
         print(f"{tn} command not found... Try typing -h")

@@ -25,5 +25,5 @@ if (-not $curlPath -or -not $pythonPath) {
 
 Write-Host "$ToolName curl.exe found at $curlPath" -ForegroundColor Green
 Write-Host "$ToolName python found at $pythonPath" -ForegroundColor Green
-Write-Host "$ToolName Ending process... Go back to https://github.com/PurpleWorksKirnotP/OP/blob/main/Mains/CmdPurps.md to run any script."
+Write-Host "$ToolName Ending process... Go back to https://github.com/PurpleWorksKirnotP/PurpleScripts/blob/main/Mains/CmdPurps.md to run any script."
 start-sleep -Seconds 10

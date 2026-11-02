@@ -25,20 +25,20 @@ sudo su
 
 Second:
 ```
-curl -fsSL https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/LinuxDeps.sh | bash 
+curl -fsSL https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/LinuxDeps.sh | bash 
 ```
 
 ---
 
 Run this command in power shell
 ```
-irm https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Powershell/CMF%2B0.2.6.ps1 | iex
+irm https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Powershell/CMF%2B0.2.6.ps1 | iex
 ```
 
 ## CMFEXTENSION:
 
 ```
-irm https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Powershell/CMFEXTENSION%2B0.2.6.ps1 | iex
+irm https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Powershell/CMFEXTENSION%2B0.2.6.ps1 | iex
 ```
 
 and boom! You have CMF running.
@@ -97,7 +97,7 @@ from an older copy of the source.
 Run this command in power shell (AS ADMINISTRATOR) to install prerequisites:
 
 ```
-irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/Precaution.ps1" | iex
+irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/Precaution.ps1" | iex
 ```
 
 ## Running Python Scripts:
@@ -106,13 +106,13 @@ irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mai
 **C.M.F. Extensions Python 0.0.1
 
 ```
-(irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/CMFExtensionPython0.0.1.py") | python -
+(irm "https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/CMFExtensionPython0.0.1.py") | python -
 ```
 
 The trimmed-down variant for small Linux / iSH shells:
 
 ```
-python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/CMFExtensionPython0.0.1LINUXCUT.py').read().decode('utf-8'))"
+python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/CMFExtensionPython0.0.1LINUXCUT.py').read().decode('utf-8'))"
 ```
 
 ## Discord webhook scripts

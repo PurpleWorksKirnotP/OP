@@ -11,13 +11,13 @@ map rather than the script itself.
 Suitborn Script (NIGHT 1):
 
 ```
-loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/SuitbornFIX.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Suitborn/SuitbornFIX.lua"))()
 ```
 
 Waterbath (BLOODBATH script)
 
 ```
-loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Suitborn/Waterbath.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Suitborn/Waterbath.lua"))()
 ```
 
 Features are already self-explanable + youtube videos are provided (waterbath one is still in the works.)

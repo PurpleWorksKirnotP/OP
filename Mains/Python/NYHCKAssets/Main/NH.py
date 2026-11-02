@@ -34,7 +34,7 @@ else:
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/OP/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
+    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
 except Exception as e:
     version = f"OFFLINE..."
     print(f"Offline mode, using fallback: {e}")
@@ -750,6 +750,6 @@ while True:
     elif flag in ["-pmsg", "pegasusmessaging"]:
         pming(context, context2)
     elif flag in ["-download", "download"]:
-        dwnlod("https://github.com/PurpleWorksKirnotP/OP/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py", context)
+        dwnlod("https://github.com/PurpleWorksKirnotP/PurpleScripts/raw/refs/heads/main/Mains/Python/NYHCKAssets/Main/NH.py", context)
     else:
         print(f"{tn} command not found... Try typing -h")

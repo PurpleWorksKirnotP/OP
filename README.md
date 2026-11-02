@@ -82,7 +82,7 @@ scripts on `main`:
 
 | Host | What it provides |
 | --- | --- |
-| `raw.githubusercontent.com/PurpleWorksKirnotP/OP` | this repo's own scripts (EscapeEarly, Gojira, Suitborn, PurpsUtility, ...) |
+| `raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts` | this repo's own scripts (EscapeEarly, Gojira, Suitborn, PurpsUtility, ...) |
 | `raw.githubusercontent.com/DozeIsOkLol/UILibarys` | notification library |
 | `raw.githubusercontent.com/bloodball/-back-ups-for-libs` | shared library backup |
 | `raw.githubusercontent.com/EdgeIY/infiniteyield` | Infinite Yield admin commands |
