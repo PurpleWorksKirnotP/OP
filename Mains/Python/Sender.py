@@ -48,7 +48,8 @@ def main():
 
     # Send it
     print("\nSending...")
-    send_to_discord(webhook_url, message)
+    if not send_to_discord(webhook_url, message):
+        sys.exit(1)
 
 
 if __name__ == "__main__":
