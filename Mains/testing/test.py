@@ -7,6 +7,21 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 tn = "---[NyaHax]:"
 
+def ask(prompt=""):
+    """input() that treats end-of-input as a clean exit instead of an EOFError.
+
+    Needed because these tools are documented to be run as
+    `python -c "exec(urlopen(...))"` / `irm ... | python -`, where stdin can
+    already be closed.
+    """
+    try:
+        return input(prompt)
+    except EOFError:
+        print()
+        print(f"{tn} End of input, exitting.")
+        sys.exit(0)
+
+
 print(f"Made this in a fucking hospital. So go crazy motha fuckas!")
 print(f"")
 
@@ -60,7 +75,7 @@ def fbotnet(Fprog, bau):
 
     print(f"{tn} pipelines: {pipelines}")
 
-    imp = input(f"{tn} type out a release pipeline: ")
+    imp = ask(f"{tn} type out a release pipeline: ")
 
     for p in pipelines:
         if p.lower() in imp:
@@ -128,7 +143,7 @@ def lc():
         localhosting = True
     else:
         print(f"{tn} Do you want to end localhost?")
-        yn = input("[Y/N?]:").strip().lower()
+        yn = ask("[Y/N?]:").strip().lower()
         if yn in ("y", "yes"):
             print(f"{tn} killing all processes attached to localhost...")
             time.sleep(1)
@@ -140,9 +155,12 @@ def lc():
 print(h)
 
 while True:
-    uwu = input(f"{tn} ")
+    uwu = ask(f"{tn} ")
 
     bd = uwu.split()
+
+    if not bd:
+        continue
 
     flag = bd[0].lower()
 

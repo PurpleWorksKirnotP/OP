@@ -1,6 +1,10 @@
 import sys
 import os
-import requests
+try:
+    import requests
+except ImportError:
+    # The tool still runs, only the version banner needs HTTP.
+    requests = None
 import urllib.request
 
 IS_WINDOWS = sys.platform == "win32"
@@ -16,11 +20,21 @@ def is_admin():
         return False
 
 def run_as_admin():
-    # Re-launch the script with admin rights, triggering the UAC prompt
+    # Re-launch the script with admin rights, triggering the UAC prompt.
+    # A `python -c "..."` / `python -` launch has no script file to re-run.
     import ctypes
-    ctypes.windll.shell32.ShellExecuteW(
+    script = sys.argv[0]
+    if script in ("-c", "-") or not os.path.isfile(script):
+        print("---[NyaHax]: Cannot request admin rights for this launch.")
+        print("---[NyaHax]: Save NH.py to a file and run it again, or run from an elevated shell.")
+        sys.exit(1)
+
+    rc = ctypes.windll.shell32.ShellExecuteW(
         None, "runas", sys.executable, " ".join(sys.argv), None, 1
     )
+    if rc <= 32:
+        print(f"---[NyaHax]: Elevation was refused or failed (ShellExecuteW -> {rc}).")
+        sys.exit(1)
 
 if not is_admin():
     run_as_admin()
@@ -31,7 +45,9 @@ elif IS_WINDOWS:
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
-    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt").text
+    if requests is None:
+        raise RuntimeError("the 'requests' module is not installed")
+    version = requests.get("https://raw.githubusercontent.com/PurpleWorksKirnotP/PurpleScripts/refs/heads/main/Mains/Python/NYHCKAssets/NYHCKV.txt", timeout=5).text
 except Exception as e:
     version = f"OFFLINE..."
     print(f"Offline mode, using fallback: {e}")
@@ -40,6 +56,21 @@ import time
 import random
 
 tn = "---[NyaHax]:"
+
+def ask(prompt=""):
+    """input() that treats end-of-input as a clean exit instead of an EOFError.
+
+    Needed because these tools are documented to be run as
+    `python -c "exec(urlopen(...))"` / `irm ... | python -`, where stdin can
+    already be closed.
+    """
+    try:
+        return input(prompt)
+    except EOFError:
+        print()
+        print(f"{tn} End of input, exitting.")
+        sys.exit(0)
+
 
 # to note: This is a larp larp tool. U aren't hacking anything script kiddie
 
@@ -199,10 +230,19 @@ def dwnlod(url, filename=None):
         folder = r"C:\Program Files\_nhprogfiles"
     else:
         folder = os.path.join(os.path.expanduser("~"), "NHprogfiles")
-    os.makedirs(folder, exist_ok=True)
-    target = os.path.join(folder, filename or "NH.py")
+    # Keep the name inside the folder: strip any directory part the user passed.
+    safe_name = os.path.basename(filename) if filename else "NH.py"
+    try:
+        os.makedirs(folder, exist_ok=True)
+        target = os.path.join(folder, safe_name)
 
-    urllib.request.urlretrieve(url, target)
+        urllib.request.urlretrieve(url, target)
+    except PermissionError:
+        print(f"{tn} No permission to write to {folder}.")
+        return
+    except OSError as e:
+        print(f"{tn} Download failed: {e}")
+        return
     print(f"{tn} downloaded {os.path.basename(target)} | saved to {target}")
 
 # Download NH ^^
@@ -216,7 +256,7 @@ def pming(message, program2inj):
         time.sleep(1)
         print(f"{tn} Compiling completed, sending to local devices (Devices on infected Ips too)...")
         for i in range(1,random.randint(100, 999)):
-            print(f"{tn} SENT TO ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...",0.00001)
+            tt(f"{tn} SENT TO ************{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}...", 0.00001)
             tt(f"        [INFO]: DEVICE IMEI: {random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}{random.randint(1,9)}",0.00001)
             tt(f"        [INFO]: DEVICE IP: {random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}", 0.00001)
             tt(f"        [INFO]: EXTRACTED INFECTED DEVICE'S USER'S PERSONAL INFO... POSTED ON DOXBIN XD",0.00001)
@@ -318,7 +358,7 @@ def dh(deviceip, ip):
         time.sleep(0.001)
     time.sleep(1)
     print(f"{tn} successfully transfered files to {deviceip}! Enabling mining on device...")
-    uinp = input(f"{tn} Enable descrete mining on device? [Y/N]: ").strip().lower()
+    uinp = ask(f"{tn} Enable descrete mining on device? [Y/N]: ").strip().lower()
     if uinp in ("y", "yes"):
         print(f"{tn} Enabling descrete mining on device {deviceip}...")
         for i in range(1, random.randint(100, 1001)):
@@ -489,7 +529,7 @@ def fbotnet(Fprog, bau):
 
     print(f"{tn} pipelines: {pipelines}")
 
-    imp = input(f"{tn} type out a release pipeline: ")
+    imp = ask(f"{tn} type out a release pipeline: ")
 
     for p in pipelines:
         if p.lower() in imp:
@@ -558,7 +598,7 @@ def lc():
         localhosting = True
     else:
         print(f"{tn} Do you want to end localhost?")
-        yn = input("[Y/N?]:").strip().lower()
+        yn = ask("[Y/N?]:").strip().lower()
         if yn in ("y", "yes"):
             print(f"{tn} killing all processes attached to localhost...")
             time.sleep(1)
@@ -567,7 +607,10 @@ def lc():
         else:
             print(f"{tn} Exitting")
 
-inta = input("enter your operating system. [ios/windows/linux]: ").lower()
+inta = ask("enter your operating system. [ios/windows/linux]: ").strip().lower()
+if inta not in ("ios", "windows", "linux"):
+    print(f"{tn} Unrecognised choice '{inta}', defaulting to linux.")
+    inta = "linux"
 
 if inta == "ios":
     print(f"Running NyaHax {version} on IOS/Mac")
@@ -589,9 +632,12 @@ testa = 12
 testb = 13
 
 while True:
-    uwu = input(f"{tn} ")
+    uwu = ask(f"{tn} ")
 
     bd = uwu.split()
+
+    if not bd:
+        continue
 
     flag = bd[0].lower()
 
@@ -612,7 +658,7 @@ while True:
     elif flag in ["-bn", "-bnt", "botnet"]:
         if bnetted == True:
             print("You cannot bn again. Would you like to brick/uninfect devices?")
-            ui = input("[y/n]: ").lower()
+            ui = ask("[y/n]: ").lower()
             if ui in ["y", "n"]:
                 fbotnet(context, context2)
             else:
@@ -651,7 +697,7 @@ while True:
     elif flag in ["-malbuild", "-mb", "-malwarebuild"]:
             if malb == True:
                 print(f"{tn} You cannot malbuild again. Would you like to disable soft inject and re-enable it?")
-                ui = input("[y/n]: ").lower()
+                ui = ask("[y/n]: ").lower()
                 if ui in ["y", "yes"]:
                     malbuild(context)
                 else:
