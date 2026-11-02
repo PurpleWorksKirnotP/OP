@@ -1,22 +1,33 @@
 # Disclaimer
 
-My scripts is provided **"as is"**, without any warranties, express or implied. By downloading, running, or using this script, you acknowledge and agree to the following:
+My scripts are provided **"as is"**, without any warranties, express or implied. By
+downloading, running, or using this script, you acknowledge and agree to the following.
 
 ## System Modifications
-- This script **may modify system files, settings, registry entries, or configurations** on your computer.
-- Such changes could be **unintended, difficult to reverse**, and may cause **instability, data loss, or system malfunction**.
+
+- This script **may modify system files, settings, registry entries, or
+  configurations** on your computer.
+- Such changes could be **unintended, difficult to reverse**, and may cause
+  **instability, data loss, or system malfunction**.
 
 ## Your Responsibility
-- You are **solely responsible** for reviewing the script and understanding its effects before execution.
+
+- You are **solely responsible** for reviewing the script and understanding its
+  effects before execution.
 - It is **strongly recommended** that you:
-  - Back up important data
-  - Create a system restore point (or equivalent) prior to running this script
+  - back up important data;
+  - create a system restore point (or equivalent) prior to running this script.
 
 ## Limitation of Liability
-The author(s) assume **no liability** for any damage, data loss, security issues, or other consequences resulting from the use or misuse of this script — including but not limited to direct, indirect, incidental, or consequential damages.
+
+The author(s) assume **no liability** for any damage, data loss, security issues, or
+other consequences resulting from the use or misuse of this script — including but not
+limited to direct, indirect, incidental, or consequential damages.
 
 ## Use at Your Own Risk
-By proceeding, you accept full responsibility for any outcomes resulting from running this script.
+
+By proceeding, you accept full responsibility for any outcomes resulting from running
+this script.
 
 ---
 
@@ -27,9 +38,13 @@ By proceeding, you accept full responsibility for any outcomes resulting from ru
 ## Safety notes for this repository
 
 - No script here collects passwords, credentials or personal data.
-- No script installs itself at login, disables network adapters or shuts the
-  machine down.
+- No script installs itself at login, disables network adapters or shuts the machine
+  down.
 - The "hacking" tools (`NH.py`, `KSPOR.py`, CMF) are **simulations**: they print
   generated text and do not attack, scan or infect anything.
-- Discord webhook URLs are never stored in this repository; scripts that need one
-  read it from `DISCORD_WEBHOOK_URL` or ask for it at runtime.
+- Discord webhook URLs are never stored in this repository; scripts that need one read
+  it from `DISCORD_WEBHOOK_URL` or ask for it at runtime.
+
+---
+
+[Back to the main README](README.md)

@@ -1,23 +1,26 @@
-# Welcome to the Lua section!
+# Welcome to the Lua Section
 
-My home! I'm more experienced with lua than in any other language.
-So you're in good hands!
+> My home! I'm more experienced with Lua than with any other language, so you're in
+> good hands.
 
 ## Linux guide
 
-Run this command (DEBIAN DISTROS ONLY)
+Run these commands — **Debian distros only**.
 
+1. Install luarocks:
 
-step 1
+   ```bash
+   sudo apt install luarocks
+   ```
 
-```
-sudo apt install luarocks
-```
+2. Install luasocket:
 
-step 2
+   ```bash
+   sudo luarocks install luasocket
+   ```
 
-```
-sudo luarocks install luasocket
-```
+That's basically it — it just gives you a wait function, lol.
 
-basically it allows a wait function.. thats basically it lol..
+---
+
+[Back to the cmd guides](../CmdPurps.md) | [Back to the main README](../../README.md)
